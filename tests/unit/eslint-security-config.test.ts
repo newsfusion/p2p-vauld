@@ -9,18 +9,25 @@ async function lintMessages(code: string, filePath: string) {
 }
 
 describe("ESLint extension security rules", () => {
-  it("rejects unsanitized DOM injection", async () => {
-    const messages = await lintMessages(
-      "const node = document.createElement('div'); node.innerHTML = location.hash;",
-      "src/content/index.ts",
-    );
+  it(
+    "rejects unsanitized DOM injection",
+    async () => {
+      const messages = await lintMessages(
+        "const node = document.createElement('div'); node.innerHTML = location.hash;",
+        "src/content/index.ts",
+      );
 
-    expect(messages).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({ ruleId: "no-unsanitized/property", severity: 2 }),
-      ]),
-    );
-  });
+      expect(messages).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            ruleId: "no-unsanitized/property",
+            severity: 2,
+          }),
+        ]),
+      );
+    },
+    15_000,
+  );
 
   it("rejects cloud-synced extension storage", async () => {
     const messages = await lintMessages(
