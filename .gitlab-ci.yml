@@ -1,0 +1,80 @@
+stages:
+  - verify
+  - security
+
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+
+default:
+  image: mcr.microsoft.com/playwright:v1.60.0-noble@sha256:9bd26ad900bb5e0f4dee75839e957a89ae89c2b7ab1e76050e559790e946b948
+  before_script:
+    - corepack enable
+    - corepack prepare pnpm@11.1.2 --activate
+    - pnpm config set store-dir .pnpm-store
+    - pnpm install --frozen-lockfile
+  cache:
+    key:
+      files:
+        - pnpm-lock.yaml
+    paths:
+      - .pnpm-store/
+
+verify:
+  stage: verify
+  variables:
+    GIT_DEPTH: "0"
+  script:
+    - git --version
+    - |
+      case "$(uname -m)" in
+        x86_64)
+          ACTIONLINT_ARCHIVE=actionlint_1.7.12_linux_amd64.tar.gz
+          ACTIONLINT_SHA256=8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8
+          ;;
+        aarch64|arm64)
+          ACTIONLINT_ARCHIVE=actionlint_1.7.12_linux_arm64.tar.gz
+          ACTIONLINT_SHA256=325e971b6ba9bfa504672e29be93c24981eeb1c07576d730e9f7c8805afff0c6
+          ;;
+        *)
+          echo "Unsupported runner architecture: $(uname -m)" >&2
+          exit 1
+          ;;
+      esac
+      curl --silent --show-error --fail --location --output /tmp/actionlint.tar.gz "https://github.com/rhysd/actionlint/releases/download/v1.7.12/${ACTIONLINT_ARCHIVE}"
+      echo "${ACTIONLINT_SHA256}  /tmp/actionlint.tar.gz" | sha256sum --check
+    - tar --extract --gzip --file /tmp/actionlint.tar.gz --directory /tmp actionlint
+    - /tmp/actionlint -color -shellcheck= -pyflakes=
+    - pnpm validate:ci:gitlab
+    - pnpm scan:sensitive --history
+    - pnpm lint
+    - pnpm typecheck
+    - pnpm validate:manifest manifest.json --root . --catalog src/shared/platforms/platform-catalog.json
+    - pnpm test
+    - pnpm build
+    - pnpm exec playwright test --project=smoke tests/e2e/smoke/extension-load.test.ts --workers=1
+    - pnpm validate:manifest dist/manifest.json --root dist --catalog src/shared/platforms/platform-catalog.json --built
+
+osv_dependency_scan:
+  stage: security
+  image:
+    name: ghcr.io/google/osv-scanner:v2.5.0@sha256:5b8b38e45bb2c5c4976f0f1f07860551ea6e1f235f642cf215f74d266fec2c1b
+    entrypoint: [""]
+  before_script: []
+  cache: []
+  script:
+    - /root/osv-scanner scan -L pnpm-lock.yaml
+
+semgrep_sast:
+  stage: security
+  image: semgrep/semgrep:1.171.0@sha256:bdf7013b2c3634a487671158da77c554f531742326b543a9464d2adf6c433ac8
+  before_script: []
+  cache: []
+  script:
+    - semgrep scan --config .semgrep.yml --error --metrics=off --exclude node_modules --exclude dist --exclude coverage --exclude playwright-report --exclude tests --gitlab-sast-output=gl-sast-report.json .
+  artifacts:
+    when: always
+    reports:
+      sast: gl-sast-report.json

@@ -1,0 +1,3140 @@
+[
+  {
+    "id": "mintos",
+    "name": "Mintos",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "mintos.com"
+    ],
+    "login": {
+      "entryUrl": "https://www.mintos.com/en/login/?redirect=%2Fen%2Foverview%2F",
+      "usernameSelectors": [
+        "#login-username",
+        "input[name=\"username\"]",
+        "input[type=\"email\"]",
+        "input[name=\"email\"]",
+        "input[type=\"text\"]"
+      ],
+      "passwordSelectors": [
+        "#login-password",
+        "input[name=\"password\"]",
+        "input[type=\"password\"]"
+      ],
+      "submitSelectors": [
+        "button[data-testid=\"login-button\"]",
+        "button[type=\"submit\"]",
+        "form button[type=\"submit\"]",
+        "form button",
+        "form.login-form button[type=\"submit\"]"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]"
+      ],
+      "postLoginIndicators": [
+        "[data-test=\"mintos-balance\"]",
+        "text=/portfolio[-\\s]?guthaben|portfolio value|portfolio/i",
+        "text=/available funds|available cash|verfügbares guthaben|uninvested/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [
+        "h1[data-testid=\"total-value\"]",
+        "[data-testid=\"account-overview\"] h1"
+      ],
+      "freeCashSelectors": [
+        "[data-testid=\"account-overview\"] span.m-u-nowrap.m-u-color-n10--text"
+      ],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "bondora_go_grow",
+    "name": "Bondora Go & Grow",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "goandgrow.eu",
+      "app.goandgrow.eu",
+      "sso.bondora.com"
+    ],
+    "login": {
+      "entryUrl": "https://app.goandgrow.eu/",
+      "usernameSelectors": [
+        "input[data-testid=\"Email\"]",
+        "#username",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[type=\"email\"]",
+        "input[name=\"email\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "input[data-testid=\"Password\"]",
+        "#password",
+        "input[name=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[type=\"password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "button[data-testid=\"LoginButton\"]",
+        "#kc-login",
+        "button[name=\"login\"]",
+        "button[type=\"submit\"]",
+        "form button",
+        "input[type=\"submit\"]",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "peerberry",
+    "name": "PeerBerry",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "peerberry.com"
+    ],
+    "login": {
+      "entryUrl": "https://peerberry.com/en/client/",
+      "usernameSelectors": [
+        "input[name=\"email\"]",
+        "input[type=\"email\"]",
+        "input[type=\"text\"]",
+        "input[name=\"username\"]"
+      ],
+      "passwordSelectors": [
+        "input[name=\"password\"]",
+        "input[type=\"password\"]"
+      ],
+      "submitSelectors": [
+        "button[type=\"submit\"]",
+        "form button[type=\"submit\"]",
+        "form button"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]"
+      ],
+      "postLoginIndicators": [
+        "text=/overview|dashboard|übersicht/i",
+        "text=/available for investment|available funds/i",
+        "[data-test=\"peerberry-balance\"]"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [
+        "[data-test=\"peerberry-balance\"]"
+      ],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": [],
+      "keywords": {
+        "portfolio_value": ["account overview", "total portfolio", "invested funds"],
+        "free_cash": ["available for investment", "available funds"]
+      }
+    }
+  },
+  {
+    "id": "robocash",
+    "name": "Robocash",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "robo.cash"
+    ],
+    "login": {
+      "entryUrl": "https://robo.cash/login",
+      "usernameSelectors": [
+        "input[name=\"email\"]",
+        "input[autocomplete=\"email\"]",
+        "input[type=\"email\"]",
+        "input[type=\"text\"]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "input[name=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[type=\"password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "button[type=\"submit\"]",
+        "form button[type=\"submit\"]",
+        "form button",
+        "input[type=\"submit\"]",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "twino",
+    "name": "Twino",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "twino.eu"
+    ],
+    "login": {
+      "entryUrl": "https://www.twino.eu/en/login",
+      "usernameSelectors": [
+        "input[type=\"email\"]",
+        "input[placeholder*=\"E-mail\" i]",
+        "input[name=\"email\"]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "input[type=\"password\"]",
+        "input[placeholder*=\"Password\" i]",
+        "input[name=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "button[type=\"submit\"]",
+        "form button[type=\"submit\"]",
+        "form button",
+        "input[type=\"submit\"]",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "estateguru",
+    "name": "Estateguru",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "estateguru.com",
+      "estateguru.co",
+      "app.estateguru.co",
+      "beta.estateguru.co",
+      "auth.estateguru.co"
+    ],
+    "login": {
+      "entryUrl": "https://auth.estateguru.co/en/login",
+      "usernameSelectors": [
+        "form input[name=\"username\"]",
+        "input[name=\"username\"]",
+        "form input[placeholder*=\"name@example.com\" i]",
+        "input[name=\"email\"]"
+      ],
+      "passwordSelectors": [
+        "form input[name=\"password\"][type=\"password\"]",
+        "form input[name=\"password\"]",
+        "input[name=\"password\"]",
+        "input[type=\"password\"]"
+      ],
+      "submitSelectors": [
+        "form button[type=\"submit\"]",
+        "button[type=\"submit\"]",
+        "form button"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]"
+      ],
+      "postLoginIndicators": [
+        "text=/dashboard|portfolio|overview/i",
+        "text=/net annual return|annual return|rendite/i",
+        "text=/available|invested/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [
+        "[data-test=\"portfolio-value\"]",
+        ".portfolio-value"
+      ],
+      "freeCashSelectors": [
+        "[data-test=\"available-funds\"]",
+        ".available-funds"
+      ],
+      "netAnnualReturnSelectors": [
+        "[data-test=\"annual-return\"]",
+        ".annual-return"
+      ],
+      "keywords": {
+        "portfolio_value": ["portfolio value", "outstanding principal", "total invested", "account value"],
+        "free_cash": ["available funds", "available balance"],
+        "net_annual_return": ["net annual return", "annual return"]
+      },
+      "excludeKeywords": {
+        "portfolio_value": ["total investments", "total invested"],
+        "free_cash": [
+          "investment credit",
+          "deposited this month",
+          "invested this month",
+          "earned in the past year",
+          "principal",
+          "interest",
+          "available trades",
+          "matching your filters"
+        ]
+      }
+    }
+  },
+  {
+    "id": "debitum",
+    "name": "Debitum",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "debitum.investments"
+    ],
+    "login": {
+      "entryUrl": "https://debitum.investments/en/login",
+      "safeMode": false,
+      "usernameSelectors": [
+        "form div.nOADS[data-fieldname=\"email\"] input[name=\"email\"]",
+        "form input[name=\"email\"]",
+        "form input[inputmode=\"email\"]",
+        "input[name=\"email\"]",
+        "input[name=\"username\"]",
+        "input[placeholder*=\"E-Mail\" i]"
+      ],
+      "passwordSelectors": [
+        "form div.nOADS[data-fieldname=\"password\"] input[name=\"password\"]",
+        "form input[name=\"password\"]",
+        "input[type=\"password\"]",
+        "input[name=\"password\"]",
+        "input[placeholder*=\"Passwort\" i]"
+      ],
+      "submitSelectors": [
+        "form button._85ZHE[type=\"submit\"]",
+        "form button._85ZHE",
+        "form button[type=\"submit\"]",
+        "button._85ZHE",
+        "button[type=\"submit\"]",
+        ".login-btn",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]"
+      ],
+      "postLoginIndicators": [
+        "text=/available funds|available cash|free cash|verfügbar/i",
+        "text=/mein kontostand|my balance|kontoauszug|account statement/i",
+        "text=/insgesamt investiert|total invested/i",
+        ".portfolio-value",
+        "[data-cy=\"portfolio-total\"]"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [
+        "div._2nctq._2MeSN._3kiGJ > div._2Ft66._3yzYJ.JZ1mA._1NpnX"
+      ],
+      "freeCashSelectors": [
+        "div._3sWxm > div._2Xt7V > div._2Ft66._3yzYJ.KoTjv > div._2nctq._2eX-8._3kiGJ > div._2Ft66._3yzYJ.KoTjv"
+      ],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "esketit",
+    "name": "Esketit",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "esketit.com"
+    ],
+    "login": {
+      "entryUrl": "https://esketit.com/login",
+      "usernameSelectors": [
+        "#email",
+        "input[type=\"email\"]",
+        "input[name=\"email\"]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "#password",
+        "input[type=\"password\"]",
+        "input[name=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "button[type=\"submit\"]",
+        "form button[type=\"submit\"]",
+        "form button",
+        "input[type=\"submit\"]",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "viainvest",
+    "name": "Viainvest",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "viainvest.com",
+      "dashboard.viainvest.com"
+    ],
+    "login": {
+      "entryUrl": "https://dashboard.viainvest.com/en/login",
+      "usernameSelectors": [
+        "#email",
+        "input[autocomplete=\"username\"]",
+        "input[type=\"email\"]",
+        "input[name=\"email\"]",
+        "input[type=\"text\"]",
+        "input[name=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "#password",
+        "input[autocomplete=\"current-password\"]",
+        "input[type=\"password\"]",
+        "input[name=\"password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "button[type=\"submit\"]",
+        "form button[type=\"submit\"]",
+        "form button",
+        "input[type=\"submit\"]",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "nectaro",
+    "name": "Nectaro",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "nectaro.eu"
+    ],
+    "login": {
+      "entryUrl": "https://nectaro.eu/login/",
+      "usernameSelectors": [
+        "input[type=\"email\"]",
+        "input[name=\"email\"]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "input[type=\"password\"]",
+        "input[name=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "button[type=\"submit\"]",
+        "form button[type=\"submit\"]",
+        "form button",
+        "input[type=\"submit\"]",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "afranga",
+    "name": "Afranga",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "afranga.com"
+    ],
+    "login": {
+      "entryUrl": "https://afranga.com/login",
+      "usernameSelectors": [
+        "input[name=\"email\"]",
+        "input[type=\"email\"]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "#password",
+        "input[name=\"password\"]",
+        "input[type=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "#form_submit",
+        "form button[type=\"submit\"]",
+        "button[type=\"submit\"]",
+        "form button",
+        "input[type=\"submit\"]",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "asterra_estate",
+    "name": "Asterra Estate",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "asterra.estate"
+    ],
+    "login": {
+      "entryUrl": "https://asterra.estate/en/auth/login",
+      "usernameSelectors": [
+        "input[name=\"email\"]",
+        "input[type=\"email\"]",
+        "input[placeholder*=\"Email\" i]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "input[name=\"password\"]",
+        "input[type=\"password\"]",
+        "input[placeholder*=\"Password\" i]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "button[type=\"submit\"]",
+        "form button[type=\"submit\"]",
+        "form button",
+        "input[type=\"submit\"]",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "devon",
+    "name": "Devon",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "devon.eu"
+    ],
+    "login": {
+      "entryUrl": "https://devon.eu/en/auth/login",
+      "usernameSelectors": [
+        "input[name=\"email\"]",
+        "input[type=\"email\"]",
+        "input[placeholder*=\"Email\" i]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "input[name=\"password\"]",
+        "input[type=\"password\"]",
+        "input[placeholder*=\"Password\" i]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "button[type=\"submit\"]",
+        "form button[type=\"submit\"]",
+        "form button",
+        "input[type=\"submit\"]",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "ff_forest",
+    "name": "FF Forest",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "ff-forest.com"
+    ],
+    "login": {
+      "entryUrl": "https://ff-forest.com/en/sign-in",
+      "usernameSelectors": [
+        "input[name=\"email\"]",
+        "input[type=\"email\"]",
+        "input[placeholder*=\"example@email.com\" i]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "input[name=\"password\"]",
+        "input[type=\"password\"]",
+        "input[placeholder*=\"Enter your password\" i]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "button[type=\"submit\"]",
+        "form button[type=\"submit\"]",
+        "form button",
+        "input[type=\"submit\"]",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "ventus_energy",
+    "name": "Ventus Energy",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "ventus.energy"
+    ],
+    "login": {
+      "entryUrl": "https://ventus.energy/en/auth/login",
+      "usernameSelectors": [
+        "input[name=\"email\"]",
+        "input[type=\"email\"]",
+        "input[placeholder*=\"Email\" i]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "input[name=\"password\"]",
+        "input[type=\"password\"]",
+        "input[placeholder*=\"Password\" i]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "button[type=\"submit\"]",
+        "form button[type=\"submit\"]",
+        "form button",
+        "input[type=\"submit\"]",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "indemo",
+    "name": "Indemo",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "indemo.eu",
+      "app.indemo.eu"
+    ],
+    "login": {
+      "entryUrl": "https://app.indemo.eu/",
+      "usernameSelectors": [
+        "input[name=\"email\"]",
+        "input[type=\"email\"]",
+        "input[autocomplete=\"on\"]",
+        "input[name=\"username\"]",
+        "input[placeholder*=\"email\" i]"
+      ],
+      "passwordSelectors": [
+        "input[name=\"password\"]",
+        "input[type=\"password\"]"
+      ],
+      "submitSelectors": [
+        "button[type=\"submit\"]",
+        "form button[type=\"submit\"]",
+        "form button"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview/i",
+        "text=/available|invested|portfolio value/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [
+        "span.aside-bar__nav-amount"
+      ],
+      "freeCashSelectors": [
+        "span.aside-bar__menu-sublist-amout"
+      ],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "inrento",
+    "name": "InRento",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "inrento.com"
+    ],
+    "login": {
+      "entryUrl": "https://inrento.com/login",
+      "usernameSelectors": [
+        "input[name=\"_username\"]",
+        "input[type=\"email\"]",
+        "input[placeholder*=\"Email\" i]",
+        "input[name=\"email\"]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "input[name=\"_password\"]",
+        "input[type=\"password\"]",
+        "input[placeholder*=\"Password\" i]",
+        "input[name=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "button[type=\"submit\"]",
+        "form button[type=\"submit\"]",
+        "form button",
+        "input[type=\"submit\"]",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "crowdpear",
+    "name": "Crowdpear",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "crowdpear.com"
+    ],
+    "login": {
+      "entryUrl": "https://crowdpear.com/en/client",
+      "usernameSelectors": [
+        "#basic_credentials",
+        "input[type=\"text\"]",
+        "input[placeholder*=\"Email\" i]",
+        "input[type=\"email\"]",
+        "input[name=\"email\"]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "#basic_password",
+        "input[type=\"password\"]",
+        "input[placeholder*=\"Password\" i]",
+        "input[name=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "button[type=\"submit\"]",
+        "form button[type=\"submit\"]",
+        "form button",
+        "input[type=\"submit\"]",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "income_marketplace",
+    "name": "Income",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "getincome.com"
+    ],
+    "login": {
+      "entryUrl": "https://getincome.com/login",
+      "usernameSelectors": [
+        "#input-username",
+        "input[type=\"email\"]",
+        "input[placeholder*=\"your@example.com\" i]",
+        "input[name=\"email\"]",
+        "input[name=\"username\"]",
+        "input[placeholder*=\"email\" i]"
+      ],
+      "passwordSelectors": [
+        "#input-password",
+        "input[type=\"password\"]",
+        "input[placeholder*=\"your password\" i]",
+        "input[name=\"password\"]"
+      ],
+      "submitSelectors": [
+        "button[type=\"submit\"]",
+        "form button[type=\"submit\"]",
+        "form button"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]"
+      ],
+      "postLoginIndicators": [
+        "a[href*=\"logout\" i]",
+        "text=/portfolio|overview|dashboard/i",
+        "text=/available funds|free cash|portfolio value/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [
+        ".your .header-value",
+        ".overview .header-value"
+      ],
+      "freeCashSelectors": [
+        ".info-table .col-4.text-right"
+      ],
+      "netAnnualReturnSelectors": [],
+      "keywords": {
+        "portfolio_value": ["your portfolio", "portfolio value", "total investments"],
+        "free_cash": ["available funds", "cash balance", "uninvested funds"]
+      }
+    }
+  },
+  {
+    "id": "lande",
+    "name": "Lande",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "lande.co",
+      "app.lande.finance",
+      "invest.lande.finance"
+    ],
+    "login": {
+      "entryUrl": "https://app.lande.finance/login",
+      "usernameSelectors": [
+        "input[type=\"email\"]",
+        "input[name=\"email\"]",
+        "input[autocomplete=\"username\"]",
+        "input[name=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "input[type=\"password\"]",
+        "input[name=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "button[type=\"submit\"]",
+        "form button[type=\"submit\"]",
+        "form button",
+        "input[type=\"submit\"]",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "capitalia",
+    "name": "Capitalia",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "capitalia.com"
+    ],
+    "login": {
+      "entryUrl": "https://www.capitalia.com/en/login/",
+      "usernameSelectors": [
+        "#username",
+        "input[name=\"username\"]",
+        "input[type=\"text\"]",
+        "input[placeholder*=\"Email address\" i]",
+        "input[type=\"email\"]",
+        "input[name=\"email\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "#password",
+        "input[name=\"password\"]",
+        "input[type=\"password\"]",
+        "input[placeholder*=\"Password\" i]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "button[type=\"submit\"]",
+        "form button[type=\"submit\"]",
+        "form button",
+        "input[type=\"submit\"]",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "fintown",
+    "name": "Fintown",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "fintown.eu",
+      "www.fintown.eu",
+      "account.fintown.eu"
+    ],
+    "login": {
+      "entryUrl": "https://account.fintown.eu/login",
+      "usernameSelectors": [
+        "#email",
+        "input[name=\"email\"]",
+        "input[type=\"text\"]",
+        "input[type=\"email\"]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "#password",
+        "input[name=\"password\"]",
+        "input[type=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "button[type=\"submit\"]",
+        "form button[type=\"submit\"]",
+        "form button",
+        "input[type=\"submit\"]",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "monefit_smartsaver",
+    "name": "Monefit SmartSaver",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "monefit.com",
+      "smartsaver.monefit.com"
+    ],
+    "login": {
+      "entryUrl": "https://smartsaver.monefit.com/de/login",
+      "usernameSelectors": [
+        "input[name=\"identificator\"]",
+        "input[autocomplete=\"email\"]",
+        "input[type=\"email\"]",
+        "input[name=\"email\"]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "input[name=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[type=\"password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "form button[type=\"submit\"]",
+        "button[type=\"submit\"]",
+        "form button",
+        "input[type=\"submit\"]",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "mypeak_finance",
+    "name": "MyPeak Finance",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "mypeak.finance"
+    ],
+    "login": {
+      "entryUrl": "https://mypeak.finance/login",
+      "usernameSelectors": [
+        "#email",
+        "input[type=\"email\"]",
+        "input[placeholder*=\"Enter your email\" i]",
+        "input[name=\"email\"]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "#password",
+        "input[type=\"password\"]",
+        "input[placeholder*=\"Enter your password\" i]",
+        "input[name=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "button[type=\"submit\"]",
+        "form button[type=\"submit\"]",
+        "form button",
+        "input[type=\"submit\"]",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "triple_dragon",
+    "name": "Triple Dragon Funding",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "tdfunding.eu",
+      "www.tdfunding.eu"
+    ],
+    "login": {
+      "entryUrl": "https://www.tdfunding.eu/en/auth/login",
+      "usernameSelectors": [
+        "input[name=\"email\"]",
+        "input[type=\"email\"]",
+        "input[placeholder*=\"Email\" i]",
+        "input[name=\"username\"]",
+        "input[placeholder*=\"email\" i]"
+      ],
+      "passwordSelectors": [
+        "input[name=\"password\"]",
+        "input[type=\"password\"]",
+        "input[placeholder*=\"Password\" i]"
+      ],
+      "submitSelectors": [
+        "button[type=\"submit\"]",
+        "form button[type=\"submit\"]",
+        "form button"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]"
+      ],
+      "postLoginIndicators": [
+        "text=/dashboard|portfolio|overview/i",
+        "text=/available|invested|account/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [
+        "p.text-primary-yellow.text-3xl",
+        "p.text-primary-yellow"
+      ],
+      "freeCashSelectors": [
+        ".text-primary-milky-white.leading-6.font-semibold"
+      ],
+      "netAnnualReturnSelectors": [],
+      "keywords": {
+        "portfolio_value": ["account value", "portfolio", "invested"],
+        "free_cash": ["available", "wallet", "balance"]
+      }
+    }
+  },
+  {
+    "id": "insoil_finance",
+    "name": "InSoil Finance",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "finance.insoil.com",
+      "app.insoil.com"
+    ],
+    "login": {
+      "entryUrl": "https://app.insoil.com/login",
+      "usernameSelectors": [
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[type=\"email\"]",
+        "input[name=\"email\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "input[name=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[type=\"password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "button[type=\"submit\"]",
+        "form button[type=\"submit\"]",
+        "form button",
+        "input[type=\"submit\"]",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "bondster",
+    "name": "Bondster",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "bondster.com"
+    ],
+    "login": {
+      "entryUrl": "https://bondster.com/cz/",
+      "usernameSelectors": [
+        "input[type=\"email\"]",
+        "input[name=\"email\"]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "input[type=\"password\"]",
+        "input[name=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "button[type=\"submit\"]",
+        "input[type=\"submit\"]",
+        "form button",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "crowdestor",
+    "name": "Crowdestor",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "crowdestor.com"
+    ],
+    "login": {
+      "entryUrl": "https://crowdestor.com/en/account",
+      "usernameSelectors": [
+        "#login_identity",
+        "input[name=\"login_identity\"]",
+        "input[type=\"text\"]",
+        "input[placeholder*=\"E-mail\" i]",
+        "input[type=\"email\"]",
+        "input[name=\"email\"]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "#login_password",
+        "input[name=\"login_password\"]",
+        "input[type=\"password\"]",
+        "input[placeholder*=\"Password\" i]",
+        "input[name=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "input[name=\"submit\"]",
+        "input[type=\"submit\"]",
+        "button[type=\"submit\"]",
+        "form button",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "lendermarket",
+    "name": "Lendermarket",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "lendermarket.com",
+      "app.lendermarket.com"
+    ],
+    "login": {
+      "entryUrl": "https://app.lendermarket.com/sign-in",
+      "usernameSelectors": [
+        "#email",
+        "input[name=\"email\"]",
+        "input[type=\"email\"]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "#password",
+        "input[name=\"password\"]",
+        "input[type=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "#submit",
+        "button[type=\"submit\"]",
+        "form button[type=\"submit\"]",
+        "form button",
+        "input[type=\"submit\"]",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "swaper",
+    "name": "Swaper",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "swaper.com"
+    ],
+    "login": {
+      "entryUrl": "https://swaper.com/en/login",
+      "usernameSelectors": [
+        "input[name=\"email\"]",
+        "input[type=\"email\"]",
+        "input[placeholder*=\"E-mail\" i]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "#current-password",
+        "input[name=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[type=\"password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "button[type=\"submit\"]",
+        "form button[type=\"submit\"]",
+        "form button",
+        "input[type=\"submit\"]",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "iuvo_group",
+    "name": "IUVO Group",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "iuvo.group",
+      "iuvo-group.com"
+    ],
+    "login": {
+      "entryUrl": "https://iuvo-group.com/en/login/",
+      "usernameSelectors": [
+        "#p2p_login_form_login",
+        "input[name=\"login\"]",
+        "input[type=\"email\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[name=\"email\"]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "#p2p_login_form_password",
+        "input[name=\"password\"]",
+        "input[type=\"password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "#p2p_login_form_login_btn",
+        "input[type=\"submit\"]",
+        "button[type=\"submit\"]",
+        "form button",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "kviku_finance",
+    "name": "Kviku Finance",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "kviku.com",
+      "kviku.finance"
+    ],
+    "login": {
+      "entryUrl": "https://kviku.finance/en/auth/login",
+      "usernameSelectors": [
+        "#loginform-email",
+        "input[name=\"LoginForm[email]\"]",
+        "input[type=\"email\"]",
+        "input[placeholder*=\"Email\" i]",
+        "input[name=\"email\"]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "#loginform-password",
+        "input[name=\"LoginForm[password]\"]",
+        "input[type=\"password\"]",
+        "input[placeholder*=\"Password\" i]",
+        "input[name=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "button[name=\"login-button\"]",
+        "button[type=\"submit\"]",
+        "form button",
+        "input[type=\"submit\"]",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "neo_finance",
+    "name": "Neo Finance",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "neofinance.com"
+    ],
+    "login": {
+      "entryUrl": "https://www.neofinance.com/prisijungti",
+      "usernameSelectors": [
+        "#_username",
+        "input[name=\"_username\"]",
+        "input[type=\"email\"]",
+        "input[name=\"email\"]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "#_password",
+        "input[name=\"_password\"]",
+        "input[type=\"password\"]",
+        "input[name=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "input[type=\"submit\"]",
+        "button[type=\"submit\"]",
+        "form button",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "finbee",
+    "name": "Finbee",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "finbee.lt",
+      "www.finbee.lt",
+      "p2p.finbee.lt"
+    ],
+    "login": {
+      "entryUrl": "https://p2p.finbee.lt/prisijungti",
+      "usernameSelectors": [
+        "input[name=\"email\"]",
+        "input[type=\"text\"]",
+        "input[placeholder*=\"El. pašto adresas\" i]",
+        "input[type=\"email\"]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "input[name=\"password\"]",
+        "input[type=\"password\"]",
+        "input[placeholder*=\"Slaptažodis\" i]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "form button[type=\"submit\"]",
+        "button[type=\"submit\"]",
+        "form button",
+        "input[type=\"submit\"]",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "axia_funder",
+    "name": "Axia Funder",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "axiafunder.com"
+    ],
+    "login": {
+      "entryUrl": "https://www.axiafunder.com/login",
+      "usernameSelectors": [
+        "#UserName",
+        "input[name=\"UserName\"]",
+        "input[type=\"email\"]",
+        "input[placeholder*=\"Email address\" i]",
+        "input[name=\"email\"]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "#Password",
+        "input[name=\"Password\"]",
+        "input[type=\"password\"]",
+        "input[placeholder*=\"Password\" i]",
+        "input[name=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "button[type=\"submit\"]",
+        "form button[type=\"submit\"]",
+        "form button",
+        "input[type=\"submit\"]",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "maclear",
+    "name": "Maclear",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "maclear.eu"
+    ],
+    "login": {
+      "entryUrl": "https://maclear.eu/lander",
+      "usernameSelectors": [
+        "input[type=\"email\"]",
+        "input[name=\"email\"]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "input[type=\"password\"]",
+        "input[name=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "button[type=\"submit\"]",
+        "input[type=\"submit\"]",
+        "form button",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "loanch",
+    "name": "Loanch",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "loanch.com"
+    ],
+    "login": {
+      "entryUrl": "https://loanch.com/dashboard",
+      "usernameSelectors": [
+        "input[type=\"email\"]",
+        "input[placeholder*=\"Email\" i]",
+        "input[name=\"email\"]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "input[type=\"password\"]",
+        "input[placeholder*=\"Password\" i]",
+        "input[name=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "form button[type=\"submit\"]",
+        "button[type=\"submit\"]",
+        "form button",
+        "input[type=\"submit\"]",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "savy",
+    "name": "Savy",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "gosavy.com",
+      "app.gosavy.com"
+    ],
+    "login": {
+      "entryUrl": "https://app.gosavy.com/login",
+      "usernameSelectors": [
+        "input[data-testid=\"login-page-email-field\"]",
+        "input[name=\"email\"]",
+        "input[autocomplete=\"username\"]",
+        "input[type=\"email\"]",
+        "input[name=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "input[data-testid=\"login-page-password-field\"]",
+        "input[name=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[type=\"password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "button[type=\"submit\"]",
+        "form button[type=\"submit\"]",
+        "form button",
+        "input[type=\"submit\"]",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "quanloop",
+    "name": "Quanloop",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "quanloop.com"
+    ],
+    "login": {
+      "entryUrl": "https://www.quanloop.com/en/login",
+      "usernameSelectors": [
+        "input[name=\"email\"]",
+        "input[type=\"text\"]",
+        "input[type=\"email\"]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "input[type=\"password\"]",
+        "input[name=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "button[type=\"submit\"]",
+        "form button[type=\"submit\"]",
+        "form button",
+        "input[type=\"submit\"]",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "bergfurst",
+    "name": "Bergfürst",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "bergfuerst.com"
+    ],
+    "login": {
+      "entryUrl": "https://bergfuerst.com/login",
+      "usernameSelectors": [
+        "#login_email",
+        "input[name=\"_username\"]",
+        "input[type=\"email\"]",
+        "input[name=\"email\"]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "#login_password",
+        "input[name=\"_password\"]",
+        "input[type=\"password\"]",
+        "input[name=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "input[type=\"submit\"]",
+        "button[type=\"submit\"]",
+        "form button",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "exporo",
+    "name": "Exporo",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "exporo.de",
+      "app.exporo.de"
+    ],
+    "login": {
+      "entryUrl": "https://app.exporo.de/",
+      "usernameSelectors": [
+        "#email",
+        "input[name=\"email\"]",
+        "input[autocomplete=\"email\"]",
+        "input[type=\"text\"]",
+        "input[type=\"email\"]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "#current-password",
+        "input[name=\"current-password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[type=\"password\"]",
+        "input[name=\"password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "input[type=\"submit\"]",
+        "button[type=\"submit\"]",
+        "form button",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "stock_estate",
+    "name": "Stock.estate",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "stock.estate"
+    ],
+    "login": {
+      "entryUrl": "https://stock.estate/auth/login",
+      "usernameSelectors": [
+        "input[name=\"email\"]",
+        "input[autocomplete=\"email\"]",
+        "input[type=\"email\"]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "input[name=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[type=\"password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "button[type=\"button\"]",
+        "button[type=\"submit\"]",
+        "form button",
+        "input[type=\"submit\"]",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "shojin",
+    "name": "Shojin",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "shojin.co.uk",
+      "www.shojin.co.uk",
+      "portal.shojin.co.uk"
+    ],
+    "login": {
+      "entryUrl": "https://portal.shojin.co.uk/user/login",
+      "usernameSelectors": [
+        "#UserName",
+        "input[name=\"UserName\"]",
+        "input[type=\"email\"]",
+        "input[name=\"email\"]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "#Password",
+        "input[name=\"Password\"]",
+        "input[type=\"password\"]",
+        "input[name=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "button[type=\"submit\"]",
+        "form button",
+        "input[type=\"submit\"]",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "crowdedhero",
+    "name": "CrowdedHero",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "crowdedhero.com"
+    ],
+    "login": {
+      "entryUrl": "https://crowdedhero.com/de/user/login",
+      "usernameSelectors": [
+        "#login-form-login",
+        "input[name=\"login-form[login]\"]",
+        "input[autocomplete=\"username\"]",
+        "input[type=\"text\"]",
+        "input[type=\"email\"]",
+        "input[name=\"email\"]",
+        "input[name=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "#login-form-password",
+        "input[name=\"login-form[password]\"]",
+        "input[type=\"password\"]",
+        "input[name=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "button[type=\"submit\"]",
+        "form button",
+        "input[type=\"submit\"]",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "hive5",
+    "name": "Hive5",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "hive5.com",
+      "app.hive5.com"
+    ],
+    "login": {
+      "entryUrl": "https://app.hive5.com/register/login/",
+      "usernameSelectors": [
+        "input[name=\"loginData\"]",
+        "input[type=\"email\"]",
+        "input[name=\"email\"]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "#password",
+        "input[name=\"password\"]",
+        "input[type=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "input[type=\"submit\"]",
+        "button[type=\"submit\"]",
+        "form button",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "lonvest",
+    "name": "Lonvest",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "lonvest.com",
+      "app.lonvest.com"
+    ],
+    "login": {
+      "entryUrl": "https://app.lonvest.com/sign-in",
+      "usernameSelectors": [
+        "#email",
+        "input[type=\"text\"]",
+        "input[placeholder*=\"Please enter your email\" i]",
+        "input[type=\"email\"]",
+        "input[name=\"email\"]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "#password",
+        "input[type=\"password\"]",
+        "input[placeholder*=\"Please enter your password\" i]",
+        "input[name=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "button[type=\"submit\"]",
+        "form button",
+        "input[type=\"submit\"]",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "landex",
+    "name": "Landex",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "landex.ai",
+      "www.landex.ai",
+      "invest.landex.ai"
+    ],
+    "login": {
+      "entryUrl": "https://invest.landex.ai/login",
+      "usernameSelectors": [
+        "input[type=\"email\"]",
+        "input[name=\"email\"]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "input[type=\"password\"]",
+        "input[name=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "button[type=\"submit\"]",
+        "form button",
+        "input[type=\"submit\"]",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "nibble",
+    "name": "Nibble",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "nibble.finance",
+      "my.nibble.finance"
+    ],
+    "login": {
+      "entryUrl": "https://my.nibble.finance/login",
+      "usernameSelectors": [
+        "#loginEmail",
+        "input[name=\"loginEmail\"]",
+        "input[type=\"email\"]",
+        "input[name=\"email\"]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "#loginPassword",
+        "input[name=\"loginPassword\"]",
+        "input[type=\"password\"]",
+        "input[name=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "button[type=\"submit\"]",
+        "form button",
+        "button:not([type])",
+        "input[type=\"submit\"]"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "modena",
+    "name": "Modena",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "modena.capital",
+      "app.modena.capital",
+      "auth.modena.ee"
+    ],
+    "login": {
+      "entryUrl": "https://app.modena.capital/",
+      "usernameSelectors": [
+        "#username",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username webauthn\"]",
+        "input[type=\"text\"]",
+        "input[type=\"email\"]",
+        "input[name=\"email\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "input[type=\"password\"]",
+        "input[name=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "#kc-login",
+        "button[name=\"login\"]",
+        "button[type=\"submit\"]",
+        "form button",
+        "input[type=\"submit\"]",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "profitus",
+    "name": "Profitus",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "profitus.com",
+      "www.profitus.com",
+      "ss.profitus.com"
+    ],
+    "login": {
+      "entryUrl": "https://ss.profitus.com/login",
+      "usernameSelectors": [
+        "input[name=\"email\"]",
+        "input[type=\"email\"]",
+        "input[placeholder*=\"E-Mail\" i]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "#password",
+        "input[name=\"password\"]",
+        "input[type=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "#login-button",
+        "button[type=\"submit\"]",
+        "form button",
+        "input[type=\"submit\"]",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "nordstreet",
+    "name": "Nordstreet",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "nordstreet.com"
+    ],
+    "login": {
+      "entryUrl": "https://nordstreet.com/login",
+      "usernameSelectors": [
+        "#login_form_username",
+        "input[name=\"login_form[username]\"]",
+        "input[autocomplete=\"email\"]",
+        "input[type=\"text\"]",
+        "input[type=\"email\"]",
+        "input[name=\"email\"]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "#login_form_password",
+        "input[name=\"login_form[password]\"]",
+        "input[type=\"password\"]",
+        "input[name=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "#login",
+        "button[type=\"submit\"]",
+        "form button",
+        "input[type=\"submit\"]",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "linked_finance",
+    "name": "Linked Finance",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "linkedfinance.com",
+      "www.linkedfinance.com",
+      "app.linkedfinance.com"
+    ],
+    "login": {
+      "entryUrl": "https://app.linkedfinance.com/login",
+      "usernameSelectors": [
+        "input[name=\"email\"]",
+        "input[type=\"email\"]",
+        "input[placeholder*=\"Email\" i]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "input[name=\"password\"]",
+        "input[type=\"password\"]",
+        "input[placeholder*=\"Password\" i]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "button[type=\"submit\"]",
+        "form button",
+        "input[type=\"submit\"]",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "planethome",
+    "name": "PlanetHome",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "planethome-invest.de"
+    ],
+    "login": {
+      "entryUrl": "https://planethome-invest.de/lander",
+      "usernameSelectors": [
+        "input[type=\"email\"]",
+        "input[name=\"email\"]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "input[type=\"password\"]",
+        "input[name=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "button[type=\"submit\"]",
+        "input[type=\"submit\"]",
+        "form button",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "letsinvest",
+    "name": "LetsInvest",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "letsinvest.eu",
+      "letsinvest.eu.auth0.com"
+    ],
+    "login": {
+      "entryUrl": "https://letsinvest.eu/login",
+      "usernameSelectors": [
+        "#1-email",
+        "input[name=\"email\"]",
+        "input[type=\"email\"]",
+        "input[placeholder*=\"yours@example.com\" i]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "input[name=\"password\"]",
+        "input[type=\"password\"]",
+        "input[placeholder*=\"your password\" i]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "button[name=\"submit\"]",
+        "button[type=\"submit\"]",
+        "form button",
+        "input[type=\"submit\"]",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "goparity",
+    "name": "GoParity",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "goparity.com",
+      "www.goparity.com",
+      "app.goparity.com"
+    ],
+    "login": {
+      "entryUrl": "https://app.goparity.com/login",
+      "usernameSelectors": [
+        "input[type=\"email\"]",
+        "input[name=\"email\"]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "input[type=\"password\"]",
+        "input[name=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "button[type=\"submit\"]",
+        "input[type=\"submit\"]",
+        "form button",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "wiwin",
+    "name": "WIWIN",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "wiwin.de",
+      "wiwin-invest.de"
+    ],
+    "login": {
+      "entryUrl": "https://wiwin-invest.de/login",
+      "usernameSelectors": [
+        "input[type=\"email\"]",
+        "input[name=\"email\"]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "input[type=\"password\"]",
+        "input[name=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "button[type=\"submit\"]",
+        "input[type=\"submit\"]",
+        "form button",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "bettervest",
+    "name": "bettervest",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "bettervest.com",
+      "www.bettervest.com"
+    ],
+    "login": {
+      "entryUrl": "https://www.bettervest.com/wp-login.php",
+      "usernameSelectors": [
+        "input[type=\"email\"]",
+        "input[name=\"email\"]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "input[type=\"password\"]",
+        "input[name=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "button[type=\"submit\"]",
+        "input[type=\"submit\"]",
+        "form button",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "dagobertinvest",
+    "name": "dagobertinvest",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "dagobertinvest.com",
+      "www.dagobertinvest.com"
+    ],
+    "login": {
+      "entryUrl": "https://www.dagobertinvest.com/login",
+      "usernameSelectors": [
+        "input[type=\"email\"]",
+        "input[name=\"email\"]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "input[type=\"password\"]",
+        "input[name=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "button[type=\"submit\"]",
+        "input[type=\"submit\"]",
+        "form button",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  },
+  {
+    "id": "rendity",
+    "name": "Rendity",
+    "enabled": true,
+    "strategy": "universal",
+    "domains": [
+      "rendity.com"
+    ],
+    "login": {
+      "entryUrl": "https://rendity.com/en/login",
+      "usernameSelectors": [
+        "input[type=\"email\"]",
+        "input[name=\"email\"]",
+        "input[name=\"username\"]",
+        "input[autocomplete=\"username\"]",
+        "input[placeholder*=\"email\" i]",
+        "input[placeholder*=\"e-mail\" i]",
+        "input[placeholder*=\"username\" i]"
+      ],
+      "passwordSelectors": [
+        "input[type=\"password\"]",
+        "input[name=\"password\"]",
+        "input[autocomplete=\"current-password\"]",
+        "input[placeholder*=\"password\" i]",
+        "input[placeholder*=\"passwort\" i]"
+      ],
+      "submitSelectors": [
+        "button[type=\"submit\"]",
+        "input[type=\"submit\"]",
+        "form button",
+        "button:not([type])"
+      ],
+      "otpSelectors": [
+        "input[name=\"otp\"]",
+        "input[name=\"code\"]",
+        "input[autocomplete=\"one-time-code\"]",
+        "input[inputmode=\"numeric\"]",
+        "input[placeholder*=\"code\" i]"
+      ],
+      "postLoginIndicators": [
+        "text=/portfolio|dashboard|overview|account|wallet|investor|investments|available|balance|konto|übersicht/i"
+      ]
+    },
+    "dashboard": {
+      "portfolioValueSelectors": [],
+      "freeCashSelectors": [],
+      "netAnnualReturnSelectors": []
+    }
+  }
+]

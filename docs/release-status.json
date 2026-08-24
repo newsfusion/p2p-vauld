@@ -1,0 +1,5 @@
+{
+  "publicRelease": false,
+  "firstPublicVersion": null,
+  "notes": "Set publicRelease to true once the extension ships to real users. After that, persisted storage and IndexedDB contracts require migrations."
+}

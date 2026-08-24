@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Portfolio Dashboard | P2P Ledger</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .data-font {
+      font-family: 'Geist', monospace;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      vertical-align: middle;
+    }
+  </style>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-secondary-fixed-variant": "#005236",
+            "inverse-primary": "#c3c0ff",
+            "surface-bright": "#f8f9ff",
+            "error-container": "#ffdad6",
+            "secondary": "#006c49",
+            "on-primary-fixed-variant": "#3323cc",
+            "on-error-container": "#93000a",
+            "on-secondary-fixed": "#002113",
+            "surface-dim": "#cbdbf5",
+            "on-secondary": "#ffffff",
+            "inverse-surface": "#213145",
+            "on-primary-container": "#dad7ff",
+            "outline-variant": "#c7c4d8",
+            "surface-tint": "#4d44e3",
+            "tertiary-container": "#885500",
+            "on-secondary-container": "#00714d",
+            "background": "#f8f9ff",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#eff4ff",
+            "primary-fixed": "#e2dfff",
+            "on-tertiary": "#ffffff",
+            "surface-container": "#e5eeff",
+            "tertiary-fixed": "#ffddb8",
+            "outline": "#777587",
+            "tertiary": "#684000",
+            "on-error": "#ffffff",
+            "on-tertiary-fixed-variant": "#653e00",
+            "primary-fixed-dim": "#c3c0ff",
+            "surface-container-highest": "#d3e4fe",
+            "on-tertiary-container": "#ffd4a4",
+            "on-tertiary-fixed": "#2a1700",
+            "surface-container-high": "#dce9ff",
+            "on-background": "#0b1c30",
+            "surface-variant": "#d3e4fe",
+            "secondary-container": "#6cf8bb",
+            "primary-container": "#4f46e5",
+            "primary": "#3525cd",
+            "inverse-on-surface": "#eaf1ff",
+            "on-primary-fixed": "#0f0069",
+            "secondary-fixed": "#6ffbbe",
+            "on-surface-variant": "#464555",
+            "on-surface": "#0b1c30",
+            "error": "#ba1a1a",
+            "on-primary": "#ffffff",
+            "tertiary-fixed-dim": "#ffb95f",
+            "surface": "#f8f9ff",
+            "secondary-fixed-dim": "#4edea3"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin-mobile": "16px",
+            "xs": "4px",
+            "xl": "40px",
+            "lg": "24px",
+            "container-max": "1280px",
+            "base": "4px",
+            "md": "16px",
+            "sm": "8px",
+            "gutter": "24px"
+          },
+          "fontFamily": {
+            "body-lg": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "data-mono": ["Geist"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+            "label-sm": ["12px", {"lineHeight": "1.4", "fontWeight": "500"}],
+            "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "data-mono": ["16px", {"lineHeight": "1.0", "fontWeight": "500"}],
+            "headline-lg-mobile": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}],
+            "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "600"}],
+            "headline-lg": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+            "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+            "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}]
+          }
+        },
+      },
+    }
+  </script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopNavBar (Shared Component) -->
+<header class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-lg h-16 max-w-container-max mx-auto bg-surface border-b border-outline-variant shadow-sm">
+<div class="flex items-center gap-xl">
+<span class="font-headline-md text-headline-md font-bold text-primary">P2P Ledger</span>
+<nav class="hidden md:flex items-center gap-lg">
+<a class="text-primary border-b-2 border-primary pb-1 font-bold font-label-md text-label-md transition-colors duration-200" href="#">Portfolio</a>
+<a class="text-on-surface-variant font-medium font-label-md text-label-md hover:text-primary transition-colors duration-200" href="#">Analytics</a>
+<a class="text-on-surface-variant font-medium font-label-md text-label-md hover:text-primary transition-colors duration-200" href="#">Settings</a>
+<a class="text-on-surface-variant font-medium font-label-md text-label-md hover:text-primary transition-colors duration-200" href="#">Debug</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg text-label-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" placeholder="Search..." type="text"/>
+</div>
+<button class="flex items-center gap-sm px-md py-2 bg-primary text-on-primary rounded-lg font-label-md text-label-md hover:opacity-90 active:scale-[0.99] transition-all">
+<span class="material-symbols-outlined text-[18px]">sync</span>
+        Sync All
+      </button>
+<div class="flex items-center gap-sm">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">visibility_off</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
+</button>
+<button class="p-1 rounded-full border border-outline-variant hover:border-primary transition-all">
+<span class="material-symbols-outlined text-[32px]">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Container -->
+<main class="flex-grow pt-24 pb-xl px-lg max-w-container-max mx-auto w-full">
+<!-- Page Header & Actions -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-xl gap-md">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-background">Portfolio Overview</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Real-time performance metrics across all integrated platforms.</p>
+</div>
+<div class="flex items-center gap-sm bg-surface border border-outline-variant p-1 rounded-lg shadow-sm">
+<button class="px-md py-2 rounded-md bg-primary-container text-on-primary-container font-label-md text-label-md">Summary</button>
+<button class="px-md py-2 rounded-md hover:bg-surface-container-low transition-colors font-label-md text-label-md text-on-surface-variant">Details</button>
+<button class="px-md py-2 rounded-md hover:bg-surface-container-low transition-colors font-label-md text-label-md text-on-surface-variant">History</button>
+</div>
+</div>
+<!-- Summary Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg mb-xl">
+<!-- Total Portfolio Card -->
+<div class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between mb-md">
+<span class="font-label-md text-label-md text-on-surface-variant">Total Portfolio</span>
+<span class="material-symbols-outlined text-primary">account_balance_wallet</span>
+</div>
+<div class="flex items-baseline gap-sm">
+<span class="font-data-mono text-[32px] font-bold text-on-surface">€808.83</span>
+<span class="font-label-sm text-label-sm text-secondary flex items-center">
+<span class="material-symbols-outlined text-[16px]">trending_up</span> +2.4%
+          </span>
+</div>
+<div class="mt-md w-full bg-surface-container-high h-1 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[75%] rounded-full"></div>
+</div>
+</div>
+<!-- Free Cash Card -->
+<div class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between mb-md">
+<span class="font-label-md text-label-md text-on-surface-variant">Free Cash</span>
+<span class="material-symbols-outlined text-secondary">payments</span>
+</div>
+<div class="flex items-baseline gap-sm">
+<span class="font-data-mono text-[32px] font-bold text-on-surface">€33.76</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">4.1% of Total</span>
+</div>
+<div class="mt-md flex items-center gap-sm">
+<span class="font-label-sm text-label-sm px-2 py-0.5 bg-secondary-container text-on-secondary-container rounded-full">Available</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Ready to invest</span>
+</div>
+</div>
+<!-- Avg. Net Return Card -->
+<div class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between mb-md">
+<span class="font-label-md text-label-md text-on-surface-variant">Avg. Net Return</span>
+<span class="material-symbols-outlined text-tertiary">insights</span>
+</div>
+<div class="flex items-baseline gap-sm">
+<span class="font-data-mono text-[32px] font-bold text-on-surface">0.00%</span>
+<span class="font-label-sm text-label-sm text-outline">Last 30 days</span>
+</div>
+<div class="mt-md text-on-surface-variant font-label-sm text-label-sm">
+          Calculated weighted average across 7 platforms.
+        </div>
+</div>
+</div>
+<!-- Platforms Section -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm overflow-hidden mb-xl">
+<div class="p-lg border-b border-outline-variant flex items-center justify-between bg-surface-bright">
+<h2 class="font-headline-md text-headline-md text-on-surface">Platforms</h2>
+<div class="flex items-center gap-md">
+<button class="flex items-center gap-xs font-label-md text-label-md text-primary hover:underline">
+<span class="material-symbols-outlined text-[18px]">add</span> Add Platform
+          </button>
+<button class="flex items-center gap-xs font-label-md text-label-md text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined text-[18px]">filter_list</span> Filter
+          </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low">
+<tr>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant">Platform</th>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant text-right">Portfolio Value</th>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant text-right">Free Cash</th>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant text-right">Net Return</th>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant">Since</th>
+<th class="px-lg py-md"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Mintos (Expanded) -->
+<tr class="hover:bg-surface-container-low transition-colors group cursor-pointer bg-surface-container-low/50">
+<td class="px-lg py-lg">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary">expand_more</span>
+<div class="flex items-center gap-sm">
+<img alt="Mintos Logo" class="w-8 h-8 rounded-full border border-outline-variant" data-alt="A clean, minimalist logo icon for a financial technology platform, featuring geometric green and white shapes on a crisp background, symbolizing professional peer-to-peer lending and portfolio management services in a modern fintech style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPX10pMN4NYNCWfeueMaOYn-WZEGV7eMNzgUy-TOQhZvDpW8ARCQ8Uxl971i6w1jTzrH7L6NaRgb40w9Tm2qtIQaT294UNqHwU8vxVIZR4AP7bB3I5Fd9OxG2l7KbQHPBUm6KeszNSztUgD6HcQcbxY1vh6OznDdP0THbjBHSSwmyds6toPD2yfNhuD-Zaf0UcIgFJTsmifTHpJGCNTS6oX2Zenbo9xCNN7BCuMaBepQdFYuN6t72XAlzUDrIcQCMNcPIQji9e8Sw"/>
+<span class="font-body-md text-body-md font-semibold text-on-surface">Mintos</span>
+</div>
+</div>
+</td>
+<td class="px-lg py-lg text-right font-data-mono text-body-md font-medium text-on-surface">€254.12</td>
+<td class="px-lg py-lg text-right font-data-mono text-body-md text-on-surface-variant">€12.45</td>
+<td class="px-lg py-lg text-right font-data-mono text-body-md text-secondary">11.2%</td>
+<td class="px-lg py-lg font-body-md text-body-md text-on-surface-variant">Jan 2023</td>
+<td class="px-lg py-lg text-right">
+<button class="p-2 text-outline-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Expanded Content for Mintos -->
+<tr>
+<td class="px-lg pb-lg bg-surface-container-low/30" colspan="6">
+<div class="border border-outline-variant rounded-lg bg-surface p-md shadow-inner">
+<div class="flex items-center justify-between mb-md">
+<h3 class="font-label-md text-label-md text-primary uppercase tracking-wider">Recent Changes</h3>
+<button class="text-label-sm text-label-sm text-on-surface-variant hover:text-primary">View Full History</button>
+</div>
+<table class="w-full text-left">
+<thead class="border-b border-outline-variant">
+<tr>
+<th class="py-sm font-label-sm text-label-sm text-on-surface-variant">Date</th>
+<th class="py-sm font-label-sm text-label-sm text-on-surface-variant">Action</th>
+<th class="py-sm font-label-sm text-label-sm text-on-surface-variant text-right">Amount</th>
+<th class="py-sm font-label-sm text-label-sm text-on-surface-variant text-right">Balance</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr>
+<td class="py-sm font-data-mono text-label-sm text-on-surface">2024-05-12</td>
+<td class="py-sm font-body-md text-label-sm text-secondary">Interest Payment</td>
+<td class="py-sm font-data-mono text-label-sm text-secondary text-right">+€1.42</td>
+<td class="py-sm font-data-mono text-label-sm text-on-surface text-right">€254.12</td>
+</tr>
+<tr>
+<td class="py-sm font-data-mono text-label-sm text-on-surface">2024-05-01</td>
+<td class="py-sm font-body-md text-label-sm text-on-surface-variant">Reinvestment</td>
+<td class="py-sm font-data-mono text-label-sm text-on-surface-variant text-right">-€10.00</td>
+<td class="py-sm font-data-mono text-label-sm text-on-surface text-right">€252.70</td>
+</tr>
+</tbody>
+</table>
+</div>
+</td>
+</tr>
+<!-- Other Platforms -->
+<tr class="hover:bg-surface-container-low transition-colors group cursor-pointer">
+<td class="px-lg py-lg">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-primary font-bold">D</div>
+<span class="font-body-md text-body-md font-semibold text-on-surface">Debitum</span>
+</div>
+</div>
+</td>
+<td class="px-lg py-lg text-right font-data-mono text-body-md font-medium text-on-surface">€100.00</td>
+<td class="px-lg py-lg text-right font-data-mono text-body-md text-on-surface-variant">€0.00</td>
+<td class="px-lg py-lg text-right font-data-mono text-body-md text-outline">0.0%</td>
+<td class="px-lg py-lg font-body-md text-body-md text-on-surface-variant">Mar 2024</td>
+<td class="px-lg py-lg text-right">
+<button class="p-2 text-outline-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group cursor-pointer">
+<td class="px-lg py-lg">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-primary font-bold">E</div>
+<span class="font-body-md text-body-md font-semibold text-on-surface">EstateGuru</span>
+</div>
+</div>
+</td>
+<td class="px-lg py-lg text-right font-data-mono text-body-md font-medium text-on-surface">€152.40</td>
+<td class="px-lg py-lg text-right font-data-mono text-body-md text-on-surface-variant">€5.20</td>
+<td class="px-lg py-lg text-right font-data-mono text-body-md text-secondary">8.5%</td>
+<td class="px-lg py-lg font-body-md text-body-md text-on-surface-variant">Sep 2023</td>
+<td class="px-lg py-lg text-right">
+<button class="p-2 text-outline-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group cursor-pointer">
+<td class="px-lg py-lg">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-primary font-bold">I</div>
+<span class="font-body-md text-body-md font-semibold text-on-surface">Income Marketplace</span>
+</div>
+</div>
+</td>
+<td class="px-lg py-lg text-right font-data-mono text-body-md font-medium text-on-surface">€85.31</td>
+<td class="px-lg py-lg text-right font-data-mono text-body-md text-on-surface-variant">€2.11</td>
+<td class="px-lg py-lg text-right font-data-mono text-body-md text-secondary">10.1%</td>
+<td class="px-lg py-lg font-body-md text-body-md text-on-surface-variant">Nov 2023</td>
+<td class="px-lg py-lg text-right">
+<button class="p-2 text-outline-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group cursor-pointer">
+<td class="px-lg py-lg">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-primary font-bold">In</div>
+<span class="font-body-md text-body-md font-semibold text-on-surface">Indemo</span>
+</div>
+</div>
+</td>
+<td class="px-lg py-lg text-right font-data-mono text-body-md font-medium text-on-surface">€50.00</td>
+<td class="px-lg py-lg text-right font-data-mono text-body-md text-on-surface-variant">€0.00</td>
+<td class="px-lg py-lg text-right font-data-mono text-body-md text-outline">0.0%</td>
+<td class="px-lg py-lg font-body-md text-body-md text-on-surface-variant">May 2024</td>
+<td class="px-lg py-lg text-right">
+<button class="p-2 text-outline-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group cursor-pointer">
+<td class="px-lg py-lg">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-primary font-bold">P</div>
+<span class="font-body-md text-body-md font-semibold text-on-surface">Peerberry</span>
+</div>
+</div>
+</td>
+<td class="px-lg py-lg text-right font-data-mono text-body-md font-medium text-on-surface">€117.00</td>
+<td class="px-lg py-lg text-right font-data-mono text-body-md text-on-surface-variant">€14.00</td>
+<td class="px-lg py-lg text-right font-data-mono text-body-md text-secondary">9.2%</td>
+<td class="px-lg py-lg font-body-md text-body-md text-on-surface-variant">Dec 2023</td>
+<td class="px-lg py-lg text-right">
+<button class="p-2 text-outline-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group cursor-pointer">
+<td class="px-lg py-lg">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-primary font-bold">T</div>
+<span class="font-body-md text-body-md font-semibold text-on-surface">Triple Dragon Funding</span>
+</div>
+</div>
+</td>
+<td class="px-lg py-lg text-right font-data-mono text-body-md font-medium text-on-surface">€50.00</td>
+<td class="px-lg py-lg text-right font-data-mono text-body-md text-on-surface-variant">€0.00</td>
+<td class="px-lg py-lg text-right font-data-mono text-body-md text-outline">0.0%</td>
+<td class="px-lg py-lg font-body-md text-body-md text-on-surface-variant">Apr 2024</td>
+<td class="px-lg py-lg text-right">
+<button class="p-2 text-outline-variant group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-lg bg-surface-container-low text-center">
+<button class="font-label-md text-label-md text-primary font-bold hover:underline">View Consolidated Portfolio Analytics</button>
+</div>
+</div>
+<!-- Additional Data Visualizations (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-lg mb-xl">
+<div class="md:col-span-2 bg-surface-container-lowest border border-outline-variant p-lg rounded-xl shadow-sm">
+<h3 class="font-label-md text-label-md text-on-surface mb-md">Portfolio Distribution</h3>
+<div class="flex items-center gap-lg">
+<div class="w-32 h-32 rounded-full border-8 border-primary flex items-center justify-center border-t-secondary border-r-tertiary">
+<span class="font-data-mono font-bold text-on-surface">7 Ptfs</span>
+</div>
+<div class="flex-grow space-y-2">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Consumer Loans</span>
+<span class="font-data-mono text-label-sm text-on-surface">42%</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Real Estate</span>
+<span class="font-data-mono text-label-sm text-on-surface">28%</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Business</span>
+<span class="font-data-mono text-label-sm text-on-surface">30%</span>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl shadow-sm flex flex-col justify-center items-center text-center">
+<span class="material-symbols-outlined text-secondary text-[48px] mb-md">verified</span>
+<h4 class="font-label-md text-label-md text-on-surface">Safe Status</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-sm">All platform connections are active and secure.</p>
+</div>
+<div class="bg-primary text-on-primary p-lg rounded-xl shadow-md flex flex-col justify-between">
+<span class="material-symbols-outlined text-[32px]">trending_up</span>
+<div>
+<h4 class="font-headline-md text-headline-md font-bold">Grow</h4>
+<p class="font-label-sm text-label-sm opacity-80">Explore new verified P2P platforms to diversify your risk.</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="w-full py-md px-lg flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto border-t border-outline-variant bg-surface-container-lowest">
+<div class="flex flex-col md:flex-row items-center gap-md">
+<span class="font-label-md text-label-md font-bold text-on-surface">P2P Ledger Analytics</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">© 2024 P2P Ledger Analytics. All rights reserved.</span>
+</div>
+<nav class="flex items-center gap-lg mt-md md:mt-0">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">API Docs</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">Support</a>
+</nav>
+</footer>
+</body></html>

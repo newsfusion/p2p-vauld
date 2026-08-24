@@ -1,0 +1,46 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+dist/
+releases/
+
+# Test artifacts
+test-results/
+playwright-report/
+
+# Environment
+.env
+.env.local
+gha-creds-*.json
+
+# Real platform captures must stay local and ignored
+p2p-testdata/
+
+# Playwright auth state
+playwright/.auth/
+
+# Claude Code local config
+.claude/
+.agents/
+skills-lock.json
+
+# macOS
+.DS_Store
+
+# Build logs
+build.log
+
+# Local publication checklist; never publish
+publish-plan.md
+
+# Test fixtures
+tests/fixtures/*
+!tests/fixtures/platform-html-bundle.js
+!tests/fixtures/platform-html-bundle.ts
+!tests/fixtures/extractor-test-entry.ts
+!tests/fixtures/dashboards/
+tests/fixtures/dashboards/*
+!tests/fixtures/dashboards/expected-values.json
+!tests/fixtures/dashboards/confidence-baselines.json

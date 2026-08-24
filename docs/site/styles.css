@@ -1,0 +1,148 @@
+:root {
+  color-scheme: light dark;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  line-height: 1.65;
+  color: #18211d;
+  background: #f4f7f5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  color: #087a5b;
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  text-decoration-thickness: 0.14em;
+}
+
+a:focus-visible {
+  outline: 3px solid #d58800;
+  outline-offset: 3px;
+}
+
+header,
+main,
+footer {
+  width: min(100% - 2rem, 48rem);
+  margin-inline: auto;
+}
+
+header {
+  padding-block: 3.5rem 1.5rem;
+}
+
+main {
+  padding: 2rem;
+  border: 1px solid #d8e1dc;
+  border-radius: 1rem;
+  background: #ffffff;
+  box-shadow: 0 1rem 3rem rgb(22 52 39 / 8%);
+}
+
+footer {
+  padding-block: 1.5rem 3rem;
+  color: #53635b;
+  font-size: 0.875rem;
+}
+
+h1,
+h2 {
+  line-height: 1.2;
+  color: #10251c;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2rem, 7vw, 3.5rem);
+  letter-spacing: -0.04em;
+}
+
+h2 {
+  margin-block: 2rem 0.65rem;
+  font-size: 1.25rem;
+}
+
+p,
+ul {
+  margin-block: 0.65rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.5rem;
+  color: #087a5b;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.lede {
+  max-width: 42rem;
+  color: #46564e;
+  font-size: 1.1rem;
+}
+
+.skip-link {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 1;
+  padding: 0.65rem 0.85rem;
+  border-radius: 0.4rem;
+  color: #ffffff;
+  background: #087a5b;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+@media (max-width: 36rem) {
+  header {
+    padding-top: 2.5rem;
+  }
+
+  main {
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: #dce8e2;
+    background: #0c1411;
+  }
+
+  main {
+    border-color: #283a32;
+    background: #131f1a;
+    box-shadow: none;
+  }
+
+  h1,
+  h2 {
+    color: #f3faf6;
+  }
+
+  .lede,
+  footer {
+    color: #aabbb2;
+  }
+
+  a,
+  .eyebrow {
+    color: #5ed6ad;
+  }
+}

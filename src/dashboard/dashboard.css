@@ -1,0 +1,266 @@
+@import "tailwindcss";
+
+.brand-banner-dark {
+  display: none;
+}
+
+.dark .brand-banner-light {
+  display: none;
+}
+
+.dark .brand-banner-dark {
+  display: block;
+}
+
+@theme {
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-success: hsl(var(--success));
+  --color-success-foreground: hsl(var(--success-foreground));
+  --color-warning: hsl(var(--warning));
+  --color-warning-foreground: hsl(var(--warning-foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+}
+
+@layer base {
+  :root {
+    --background: 233 100% 99%;
+    --foreground: 212 62% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 212 62% 12%;
+    --primary: 244 70% 47%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 161 100% 21%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 219 100% 97%;
+    --muted-foreground: 245 10% 30%;
+    --accent: 218 100% 95%;
+    --accent-foreground: 212 62% 12%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 248 20% 81%;
+    --input: 248 20% 81%;
+    --ring: 244 70% 47%;
+    --radius: 1rem;
+
+    --success: 161 100% 21%;
+    --success-foreground: 0 0% 100%;
+    --warning: 37 100% 27%;
+    --warning-foreground: 0 0% 100%;
+    --chart-1: 244 70% 47%;
+    --chart-2: 161 100% 21%;
+    --chart-3: 37 100% 27%;
+    --chart-4: 248 20% 81%;
+  }
+
+  .dark {
+    --background: 224 20% 6%;
+    --foreground: 210 20% 92%;
+    --card: 224 18% 10%;
+    --card-foreground: 210 20% 92%;
+    --primary: 174 60% 45%;
+    --primary-foreground: 224 20% 6%;
+    --secondary: 224 14% 16%;
+    --secondary-foreground: 210 20% 85%;
+    --muted: 224 14% 14%;
+    --muted-foreground: 220 10% 55%;
+    --accent: 174 60% 45%;
+    --accent-foreground: 224 20% 6%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 224 14% 16%;
+    --input: 224 14% 18%;
+    --ring: 174 60% 45%;
+
+    --success: 152 60% 45%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 55%;
+    --warning-foreground: 0 0% 100%;
+    --chart-1: 174 60% 45%;
+    --chart-2: 210 70% 55%;
+    --chart-3: 280 60% 60%;
+    --chart-4: 38 92% 55%;
+  }
+
+  * {
+    box-sizing: border-box;
+    @apply border-border;
+  }
+
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+
+  body {
+    margin: 0;
+    @apply bg-background text-foreground antialiased;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  p {
+    margin: 0;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
+  :where(
+    button,
+    [role='button'],
+    input[type='button'],
+    input[type='submit'],
+    input[type='reset']
+  ):not(:disabled):not([aria-disabled='true']) {
+    cursor: pointer;
+  }
+
+  :where(
+    button,
+    [role='button'],
+    input[type='button'],
+    input[type='submit'],
+    input[type='reset']
+  ):is(:disabled, [aria-disabled='true']) {
+    cursor: not-allowed;
+  }
+
+  :where(button, [role='button'], input, select, textarea, a[href]):not([disabled]):focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+}
+
+@layer utilities {
+  .font-mono-nums {
+    font-variant-numeric: tabular-nums;
+    font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', ui-monospace, SFMono-Regular, monospace;
+  }
+
+  .glass-card {
+    @apply rounded-xl border border-border bg-card shadow-sm;
+  }
+
+  .interactive-target {
+    @apply min-h-11 min-w-11;
+  }
+}
+
+@layer components {
+  .dashboard-menu-item {
+    @apply cursor-pointer rounded-md transition-all duration-150 hover:-translate-y-px hover:bg-accent/60;
+  }
+
+  .platform-icon-syncing {
+    border-color: hsl(var(--primary) / 0.55);
+    animation: platform-icon-sync-pulse 1.35s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .platform-icon-syncing {
+      animation: none;
+      box-shadow: 0 0 0 3px hsl(var(--primary) / 0.16);
+    }
+  }
+
+  @keyframes platform-icon-sync-pulse {
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 hsl(var(--primary) / 0.36);
+    }
+
+    50% {
+      box-shadow: 0 0 0 5px hsl(var(--primary) / 0);
+    }
+  }
+
+  .card {
+    @apply rounded-xl border border-border bg-card p-6 text-card-foreground shadow-sm;
+  }
+
+  .error {
+    @apply text-sm text-destructive;
+  }
+
+  .hint {
+    @apply text-sm leading-relaxed text-muted-foreground;
+  }
+
+  .modal-overlay {
+    @apply fixed inset-0 z-50 grid place-items-center bg-background/80 p-4 backdrop-blur-sm;
+  }
+
+  .modal-pop {
+    animation: modal-pop 0.2s ease-out;
+  }
+
+  @keyframes modal-pop {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .modal-pop {
+      animation: none;
+    }
+  }
+
+  .modal {
+    @apply w-full max-w-[420px] space-y-3;
+  }
+
+  .modal form {
+    @apply space-y-3;
+  }
+
+  .dialog-actions {
+    @apply flex flex-wrap gap-2;
+  }
+
+  .dialog-actions button {
+    @apply min-h-11 rounded-lg border border-border bg-card px-3 py-2 text-sm text-foreground transition hover:bg-accent;
+  }
+
+  .dialog-actions button[type='submit'] {
+    @apply border-transparent bg-primary text-primary-foreground;
+  }
+
+  input,
+  select,
+  textarea {
+    @apply border-input bg-card text-foreground placeholder:text-muted-foreground;
+  }
+}

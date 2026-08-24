@@ -1,0 +1,114 @@
+[
+  {
+    "platformId": "mintos",
+    "fixture": "mintos.html",
+    "signals": {
+      "portfolio_value": {
+        "value": 12345.67,
+        "baseline": 0.95,
+        "tier": "production"
+      },
+      "free_cash": {
+        "value": 890.12,
+        "baseline": 0.95,
+        "tier": "production"
+      }
+    }
+  },
+  {
+    "platformId": "peerberry",
+    "fixture": "peerberry.html",
+    "signals": {
+      "portfolio_value": {
+        "value": 3333.33,
+        "baseline": 0.95,
+        "tier": "production"
+      },
+      "free_cash": {
+        "value": 890.12,
+        "baseline": 0.93,
+        "tier": "production"
+      }
+    }
+  },
+  {
+    "platformId": "income_marketplace",
+    "fixture": "income-marketplace.html",
+    "signals": {
+      "portfolio_value": {
+        "value": 4210.9,
+        "baseline": 0.95,
+        "tier": "production"
+      },
+      "free_cash": {
+        "value": 110.2,
+        "baseline": 0.95,
+        "tier": "production"
+      }
+    }
+  },
+  {
+    "platformId": "indemo",
+    "fixture": "indemo.html",
+    "signals": {
+      "portfolio_value": {
+        "value": 6450,
+        "baseline": 0.95,
+        "tier": "production"
+      },
+      "free_cash": {
+        "value": 75,
+        "baseline": 0.95,
+        "tier": "production"
+      }
+    }
+  },
+  {
+    "platformId": "triple_dragon",
+    "fixture": "triple-dragon.html",
+    "signals": {
+      "portfolio_value": {
+        "value": 7777.77,
+        "baseline": 0.95,
+        "tier": "production"
+      },
+      "free_cash": {
+        "value": 88.88,
+        "baseline": 0.95,
+        "tier": "production"
+      }
+    }
+  },
+  {
+    "platformId": "estateguru",
+    "fixture": "estateguru-com.html",
+    "signals": {
+      "portfolio_value": {
+        "value": 8765.43,
+        "baseline": 0.95,
+        "tier": "production"
+      },
+      "free_cash": {
+        "value": 321,
+        "baseline": 0.95,
+        "tier": "production"
+      }
+    }
+  },
+  {
+    "platformId": "debitum",
+    "fixture": "debitum-investments.html",
+    "signals": {
+      "portfolio_value": {
+        "value": 2516.63,
+        "baseline": 0.95,
+        "tier": "production"
+      },
+      "free_cash": {
+        "value": 0.15,
+        "baseline": 0.9208,
+        "tier": "production"
+      }
+    }
+  }
+]

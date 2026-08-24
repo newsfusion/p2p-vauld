@@ -1,0 +1,32 @@
+rules:
+  - id: no-dynamic-code-execution
+    message: Dynamic code execution is incompatible with Chrome MV3 and enables code injection.
+    severity: ERROR
+    languages: [javascript, typescript]
+    pattern-either:
+      - pattern: eval(...)
+      - pattern: new Function(...)
+
+  - id: no-chrome-storage-sync
+    message: Synced storage violates the extension's local-only privacy contract.
+    severity: ERROR
+    languages: [javascript, typescript]
+    pattern: chrome.storage.sync.$METHOD(...)
+
+  - id: no-unsanitized-html-sinks
+    message: Direct HTML injection can execute attacker-controlled markup from platform pages.
+    severity: ERROR
+    languages: [javascript, typescript]
+    pattern-either:
+      - pattern: $ELEMENT.innerHTML = $VALUE
+      - pattern: $ELEMENT.outerHTML = $VALUE
+      - pattern: $ELEMENT.insertAdjacentHTML(...)
+      - pattern: document.write(...)
+
+  - id: no-shell-command-execution
+    message: Shell-based command execution risks command injection in release and CI tooling.
+    severity: ERROR
+    languages: [javascript, typescript]
+    pattern-either:
+      - pattern: exec(...)
+      - pattern: execSync(...)
