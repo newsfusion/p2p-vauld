@@ -210,8 +210,8 @@ describe("Popup App", () => {
     expect(container.textContent).toContain("Debitum");
     expect(container.textContent).not.toContain("Mintos");
     // Totals cover Debitum only (2000 / 300), not the disabled Mintos.
-    expect(container.textContent).toContain("2,000");
-    expect(container.textContent).not.toContain("3,000");
+    expect(container.textContent).toContain(eur(2000));
+    expect(container.textContent).not.toContain(eur(3000));
   });
 
   it("keeps low-confidence values in More until the user includes them in totals", async () => {
