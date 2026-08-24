@@ -88,7 +88,7 @@ P2P Vauld is built on an uncompromising local-only architecture. It has no backe
 
 Financial metrics and history are stored locally but are not encrypted. Privacy Mode masks financial values in the user interface; it does not encrypt the underlying portfolio data.
 
-See the [Privacy Policy](docs/site/privacy-policy.html) for the complete data-handling and Chrome Web Store Limited Use disclosures.
+See the [Privacy Policy](https://vauld.de/privacy-policy.html) for the complete data-handling and Chrome Web Store Limited Use disclosures.
 
 ---
 
@@ -245,7 +245,7 @@ pnpm typecheck        # TypeScript type checking
 pnpm scan:sensitive   # Block committed secrets, real captures, and risky account traces
 ```
 
-See [CI/CD and Chrome Web Store releases](docs/ci-cd.md) for verification, release preparation, WIF configuration, and publishing.
+See [CI/CD and Chrome Web Store releases](docs/ci-cd.md) for verification, release preparation, and manual Chrome Web Store publishing.
 
 ### Fixture Policy
 

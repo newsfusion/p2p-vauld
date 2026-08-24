@@ -1,6 +1,27 @@
-import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
+import { PNG } from "pngjs";
 import { describe, expect, it } from "vitest";
+
+function brightestCompositedChannelInRow(
+  pixels: Buffer,
+  width: number,
+  row: number,
+): number {
+  let brightest = 0;
+
+  for (let column = 0; column < width; column += 1) {
+    const offset = (row * width + column) * 4;
+    const alpha = (pixels[offset + 3] ?? 0) / 255;
+    brightest = Math.max(
+      brightest,
+      ((pixels[offset] ?? 0) / 255) * alpha,
+      ((pixels[offset + 1] ?? 0) / 255) * alpha,
+      ((pixels[offset + 2] ?? 0) / 255) * alpha,
+    );
+  }
+
+  return brightest;
+}
 
 describe("branding assets", () => {
   it("declares the extension favicon on visible HTML entrypoints", () => {
@@ -18,36 +39,15 @@ describe("branding assets", () => {
   });
 
   it("fills the extension toolbar icon with visible brand color", () => {
-    const topRowBrightestPixel = execFileSync("magick", [
-      "public/icons/icon16.png",
-      "-background",
-      "black",
-      "-alpha",
-      "remove",
-      "-alpha",
-      "off",
-      "-crop",
-      "16x1+0+0",
-      "-format",
-      "%[fx:maxima]",
-      "info:",
-    ], { encoding: "utf8" });
-    const bottomRowBrightestPixel = execFileSync("magick", [
-      "public/icons/icon16.png",
-      "-background",
-      "black",
-      "-alpha",
-      "remove",
-      "-alpha",
-      "off",
-      "-crop",
-      "16x1+0+15",
-      "-format",
-      "%[fx:maxima]",
-      "info:",
-    ], { encoding: "utf8" });
+    const icon = PNG.sync.read(readFileSync("public/icons/icon16.png"));
 
-    expect(Number(topRowBrightestPixel)).toBeLessThan(0.98);
-    expect(Number(bottomRowBrightestPixel)).toBeLessThan(0.98);
+    expect(icon.width).toBe(16);
+    expect(icon.height).toBe(16);
+    expect(brightestCompositedChannelInRow(icon.data, icon.width, 0)).toBeLessThan(
+      0.98,
+    );
+    expect(
+      brightestCompositedChannelInRow(icon.data, icon.width, icon.height - 1),
+    ).toBeLessThan(0.98);
   });
 });

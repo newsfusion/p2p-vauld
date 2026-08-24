@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import {
   alignReleaseVersions,
@@ -7,6 +8,17 @@ import {
 } from "../../scripts/prepare-webstore-release.mjs";
 
 describe("Web Store release tooling", () => {
+  it("creates a GitHub release for manual Web Store upload without cloud credentials", () => {
+    const workflow = readFileSync(".github/workflows/release.yml", "utf8");
+
+    expect(workflow).toContain("actions/download-artifact");
+    expect(workflow).toContain("gh release create");
+    expect(workflow).not.toContain("gh release upload");
+    expect(workflow).not.toContain("--clobber");
+    expect(workflow).not.toContain("google-github-actions/auth");
+    expect(workflow).not.toMatch(/GCP_|CHROME_ACCESS_TOKEN|CHROME_PUBLISHER_ID|CHROME_EXTENSION_ID/);
+  });
+
   it("requires an explicit three-part release version", () => {
     expect(parseReleaseVersion("1.2.0")).toBe("1.2.0");
     expect(() => parseReleaseVersion("v1.2.0")).toThrow(/MAJOR\.MINOR\.PATCH/);
