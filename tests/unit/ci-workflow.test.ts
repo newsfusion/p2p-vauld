@@ -11,6 +11,12 @@ describe("CI workflow", () => {
     expect(workflow).toContain("playwright install --with-deps chromium");
   });
 
+  it("builds the preview before running browser tests", () => {
+    expect(workflow.indexOf("pnpm build")).toBeLessThan(
+      workflow.indexOf("pnpm test:e2e --workers=1"),
+    );
+  });
+
   it("scans the complete history of the history-less public repository", () => {
     const releaseDocumentation = readFileSync("docs/ci-cd.md", "utf8");
 

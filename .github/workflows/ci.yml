@@ -59,14 +59,14 @@ jobs:
       - name: Run unit tests
         run: pnpm test
 
+      - name: Build production extension
+        run: pnpm build
+
       - name: Install Chromium
         run: pnpm exec playwright install --with-deps chromium
 
       - name: Run Playwright E2E tests
         run: pnpm test:e2e --workers=1
-
-      - name: Build production extension
-        run: pnpm build
 
       - name: Load production MV3 extension
         run: pnpm exec playwright test --project=smoke tests/e2e/smoke/extension-load.test.ts --workers=1
