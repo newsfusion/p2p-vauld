@@ -4,7 +4,7 @@ import { describe, expect, it } from "vitest";
 
 describe("published privacy policy", () => {
   it("discloses the extension's local data handling and public contact", () => {
-    const policy = readFileSync("docs/site/privacy-policy.html", "utf8");
+    const policy = readFileSync("docs/site/privacy/index.html", "utf8");
 
     expect(policy).toContain("Privacy Policy | P2P Vauld");
     expect(policy).toContain("privacy@vauld.de");
@@ -26,7 +26,11 @@ describe("published privacy policy", () => {
     const deployCondition = parsedWorkflow.jobs.deploy.if;
     const pipeline = readFileSync(".gitlab-ci.yml", "utf8");
 
-    expect(homepage).toContain('href="privacy-policy.html"');
+    const legacyPolicyUrl = readFileSync("docs/site/privacy-policy.html", "utf8");
+
+    expect(homepage).toContain('href="privacy/"');
+    expect(legacyPolicyUrl).toContain('content="0; url=privacy/"');
+    expect(legacyPolicyUrl).toContain('href="https://vauld.de/privacy/"');
     expect(workflow).toContain("workflow_run:");
     expect(workflow).toContain("workflows: [CI]");
     expect(deployCondition).toContain("github.event_name == 'workflow_run'");
