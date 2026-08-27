@@ -95,7 +95,7 @@ describe("sensitive data scanner", () => {
 
   it("allows the published project privacy contact", () => {
     const findings = scanner.scanText({
-      path: "docs/site/privacy-policy.html",
+      path: "docs/site/privacy/index.html",
       text: `Contact privacy${"@"}vauld.de`,
     });
 

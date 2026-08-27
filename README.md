@@ -3,6 +3,8 @@
 **Privacy-first Chrome extension that aggregates your P2P lending portfolios.**
 Auto-login, sync balances, and visualize your investments across 59 P2P lending platforms. All data stays in your browser, always.
 
+Official website: [https://vauld.de](https://vauld.de)
+
 <p align="center">
   <img src="https://img.shields.io/badge/chrome-MV3-4285F4?logo=googlechrome&logoColor=white" alt="Chrome MV3" />
   <img src="https://img.shields.io/badge/platforms-59-1a73e8" alt="59 Platforms" />
@@ -88,7 +90,7 @@ P2P Vauld is built on an uncompromising local-only architecture. It has no backe
 
 Financial metrics and history are stored locally but are not encrypted. Privacy Mode masks financial values in the user interface; it does not encrypt the underlying portfolio data.
 
-See the [Privacy Policy](https://vauld.de/privacy-policy.html) for the complete data-handling and Chrome Web Store Limited Use disclosures.
+See the [Privacy Policy](https://vauld.de/privacy/) for the complete data-handling and Chrome Web Store Limited Use disclosures.
 
 ---
 
