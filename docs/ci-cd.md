@@ -6,7 +6,7 @@ GitHub Actions verifies pull requests and `main`, deploys the public project sit
 
 `.github/workflows/ci.yml` runs on pull requests to `main` and pushes to `main`. It restores the pnpm cache, installs from the lockfile, scans tracked files and all unaudited commits for sensitive data, lints, typechecks, runs Vitest and headless Chromium E2E tests, builds and loads the real MV3 extension, and validates both manifests.
 
-`.github/workflows/ci.yml` is the required GitHub CI workflow. It runs the full extension verification described above. CodeQL and OSV scanning run through their dedicated GitHub workflows. Keep the GitHub mirror synchronized with `main`, otherwise neither the Pages deployment nor the release workflow can run from the current source.
+`.github/workflows/ci.yml` is the required GitHub CI workflow. It runs the full extension verification described above. CodeQL and OSV scanning run through their dedicated GitHub workflows. Keep `main` current on GitHub so Pages and release workflows always use the canonical source.
 
 `.github/workflows/pages.yml` deploys `docs/site/` after the GitHub `CI` workflow succeeds for a push from this repository to `main`, and can also be run manually from `main`. In **Settings > Pages**, choose **GitHub Actions** as the publishing source and configure the verified custom domain `vauld.de`. The workflow uploads the static site as a Pages artifact and deploys it through the `github-pages` environment. Restrict that environment to `main`. Use `https://vauld.de/privacy/` in the Chrome Web Store Developer Dashboard Privacy tab and verify it in a signed-out browser session before submission.
 

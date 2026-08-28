@@ -12,9 +12,12 @@ describe("CI workflow", () => {
   });
 
   it("builds the preview before running browser tests", () => {
-    expect(workflow.indexOf("pnpm build")).toBeLessThan(
-      workflow.indexOf("pnpm test:e2e --workers=1"),
-    );
+    const buildPosition = workflow.indexOf("pnpm build");
+    const e2ePosition = workflow.indexOf("pnpm test:e2e --workers=1");
+
+    expect(buildPosition).toBeGreaterThan(-1);
+    expect(e2ePosition).toBeGreaterThan(-1);
+    expect(buildPosition).toBeLessThan(e2ePosition);
   });
 
   it("scans the complete history of the history-less public repository", () => {
@@ -24,5 +27,11 @@ describe("CI workflow", () => {
     expect(releaseDocumentation).toContain(
       "scans the complete history of the public repository",
     );
+  });
+
+  it("documents GitHub as the primary repository", () => {
+    const releaseDocumentation = readFileSync("docs/ci-cd.md", "utf8");
+
+    expect(releaseDocumentation).not.toContain("GitHub mirror");
   });
 });

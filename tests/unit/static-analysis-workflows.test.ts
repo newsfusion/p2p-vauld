@@ -26,6 +26,9 @@ describe("static analysis workflows", () => {
 
   it("scans the pnpm lockfile with pinned OSV and blocks vulnerabilities", () => {
     const source = workflow(".github/workflows/osv-scanner.yml");
+    const parsed = parsedWorkflow(".github/workflows/osv-scanner.yml") as {
+      jobs?: Record<string, { name?: string }>;
+    };
 
     expect(source).toMatch(
       /google\/osv-scanner-action\/\.github\/workflows\/osv-scanner-reusable\.yml@[a-f0-9]{40}/,
@@ -39,6 +42,8 @@ describe("static analysis workflows", () => {
     expect(source.match(/fail-on-vuln:\s*true/g)).toHaveLength(2);
     expect(source).toMatch(/security-events:\s*write/);
     expect(source).toContain("schedule:");
+    expect(parsed.jobs?.["scan-pr"]?.name).toBe("OSV dependency scan");
+    expect(parsed.jobs?.["scan-full"]?.name).toBe("OSV dependency scan");
   });
 
   it("provides blocking static analysis for the configured GitLab origin", () => {
