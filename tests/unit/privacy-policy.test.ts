@@ -57,3 +57,31 @@ describe("published privacy policy", () => {
     expect(pipeline).not.toContain("create-pages:");
   });
 });
+
+describe("published impressum", () => {
+  it("discloses provider information under § 5 DDG and contact details", () => {
+    const impressum = readFileSync("docs/site/impressum/index.html", "utf8");
+
+    expect(impressum).toContain("Impressum | P2P Vauld");
+    expect(impressum).toContain("Inhalte gemäß § 5 DDG");
+    expect(impressum).toContain("Peter Schael");
+    expect(impressum).toContain("c/o IP-Management #11731");
+    expect(impressum).toContain("Ludwig-Erhard-Straße 18");
+    expect(impressum).toContain("20459 Hamburg");
+    expect(impressum).toContain("support.me [-at-] vauld.de");
+    expect(impressum).toContain("+49 15679 829171");
+    expect(impressum).toContain("DE274143393");
+    expect(impressum).not.toContain("mailto:");
+  });
+
+  it("links to impressum from homepage and privacy policy", () => {
+    const homepage = readFileSync("docs/site/index.html", "utf8");
+    const privacy = readFileSync("docs/site/privacy/index.html", "utf8");
+
+    expect(homepage).toContain('href="impressum/"');
+    expect(privacy).toContain('href="../impressum/"');
+    expect(privacy).toContain("c/o IP-Management #11731");
+    expect(privacy).toContain("20459 Hamburg");
+  });
+});
+

@@ -30,6 +30,7 @@ const RULES = [
     pattern: /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/gi,
     allow: (match) => {
       if (match.toLowerCase() === "privacy@vauld.de") return true;
+      if (match.toLowerCase() === "support.me@vauld.de") return true;
       const [local = "", domain = ""] = match.toLowerCase().split("@");
       return (
         /^(?:demo|dein|example|name|test|user|you|your)(?:[._+-].*)?$/.test(
