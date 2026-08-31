@@ -17,7 +17,7 @@ concurrency:
 
 jobs:
   scan-pr:
-    name: Scan newly changed dependencies
+    name: OSV dependency scan
     if: github.event_name == 'pull_request'
     permissions:
       actions: read
@@ -31,7 +31,7 @@ jobs:
       fail-on-vuln: true
 
   scan-full:
-    name: Scan complete pnpm lockfile
+    name: OSV dependency scan
     if: github.event_name != 'pull_request'
     permissions:
       actions: read
