@@ -42,13 +42,13 @@ Choose the version using semantic versioning:
 - Minor for backward-compatible features.
 - Major for intentionally breaking behavior.
 
-Chrome release versions use exactly three numeric components with no prerelease suffix. Prepare the version and local archive:
+Chrome release versions use exactly three numeric components with no prerelease suffix. Start from a clean worktree and run:
 
 ```bash
 pnpm release:webstore -- 1.2.0
 ```
 
-Review and commit the resulting `package.json` and `manifest.json` changes. The generated `releases/` archive is ignored and must not be committed. Merge the version commit and wait for CI to pass on `main`. Then open **Actions > Release Chrome extension > Run workflow**, select `main`, and enter the version without a `v` prefix, for example `1.2.0`. The workflow creates the missing `v1.2.0` tag and the GitHub Release.
+The command switches to and updates `main`, creates and pushes `release/v1.2.0`, updates and validates both version files, builds the local archive, and commits the version change. The generated `releases/` archive is ignored and is not committed. At the end, the command prints English instructions with direct links for the remaining GitHub steps: open and merge the pull request, then run **Release Chrome extension** from `main` with the version without a `v` prefix. The workflow creates the missing `v1.2.0` tag and the GitHub Release.
 
 Alternatively, an existing tag can still trigger the workflow:
 
