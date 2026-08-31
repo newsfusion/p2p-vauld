@@ -19,6 +19,16 @@ describe("Web Store release tooling", () => {
     expect(workflow).not.toMatch(/GCP_|CHROME_ACCESS_TOKEN|CHROME_PUBLISHER_ID|CHROME_EXTENSION_ID/);
   });
 
+  it("creates a missing release tag from a manually entered version", () => {
+    const workflow = readFileSync(".github/workflows/release.yml", "utf8");
+
+    expect(workflow).toMatch(/workflow_dispatch:[\s\S]*inputs:[\s\S]*version:/);
+    expect(workflow).toContain("MAJOR.MINOR.PATCH version to release from main");
+    expect(workflow).toContain('ref="refs/tags/$RELEASE_TAG"');
+    expect(workflow).toContain('sha="$RELEASE_SHA"');
+    expect(workflow).toContain("repos/$GH_REPO/git/refs");
+  });
+
   it("requires an explicit three-part release version", () => {
     expect(parseReleaseVersion("1.2.0")).toBe("1.2.0");
     expect(() => parseReleaseVersion("v1.2.0")).toThrow(/MAJOR\.MINOR\.PATCH/);
