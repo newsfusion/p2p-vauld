@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import { parse } from "yaml";
 import {
   alignReleaseVersions,
   getReleaseVersionArgument,
@@ -7,16 +8,63 @@ import {
   parseReleaseVersion,
 } from "../../scripts/prepare-webstore-release.mjs";
 
+interface ReleaseWorkflow {
+  on: {
+    workflow_dispatch: { inputs: { version: { description: string } } };
+  };
+  concurrency: { group: string };
+  jobs: {
+    package: {
+      steps: Array<{
+        name?: string;
+        env?: Record<string, string>;
+        run?: string;
+      }>;
+    };
+  };
+}
+
+function readReleaseWorkflow() {
+  return parse(
+    readFileSync(".github/workflows/release.yml", "utf8"),
+  ) as ReleaseWorkflow;
+}
+
 describe("Web Store release tooling", () => {
   it("creates a GitHub release for manual Web Store upload without cloud credentials", () => {
     const workflow = readFileSync(".github/workflows/release.yml", "utf8");
 
     expect(workflow).toContain("actions/download-artifact");
     expect(workflow).toContain("gh release create");
+    expect(workflow).toContain('ref="refs/tags/$RELEASE_TAG"');
+    expect(workflow).toContain('sha="$RELEASE_SHA"');
+    expect(workflow).toContain("repos/$GH_REPO/git/refs");
     expect(workflow).not.toContain("gh release upload");
     expect(workflow).not.toContain("--clobber");
     expect(workflow).not.toContain("google-github-actions/auth");
     expect(workflow).not.toMatch(/GCP_|CHROME_ACCESS_TOKEN|CHROME_PUBLISHER_ID|CHROME_EXTENSION_ID/);
+  });
+
+  it("pins a manual release to the commit selected at dispatch time", () => {
+    const workflow = readReleaseWorkflow();
+    const resolveStep = workflow.jobs.package.steps.find(
+      (step) => step.name === "Resolve release source",
+    );
+
+    expect(workflow.on.workflow_dispatch.inputs.version.description).toBe(
+      "MAJOR.MINOR.PATCH version to release from main",
+    );
+    expect(resolveStep?.env?.EVENT_SHA).toBe("${{ github.sha }}");
+    expect(resolveStep?.run).toContain('git checkout --detach "$release_sha"');
+    expect(resolveStep?.run).not.toContain("git checkout --detach origin/main");
+  });
+
+  it("serializes manual and tag-push releases for the same version", () => {
+    const workflow = readReleaseWorkflow();
+
+    expect(workflow.concurrency.group).toBe(
+      "release-${{ github.event_name == 'workflow_dispatch' && format('v{0}', inputs.version) || github.ref_name }}",
+    );
   });
 
   it("requires an explicit three-part release version", () => {
