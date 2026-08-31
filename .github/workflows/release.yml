@@ -12,7 +12,7 @@ on:
         type: string
 
 concurrency:
-  group: release-${{ github.event_name == 'workflow_dispatch' && inputs.version || github.ref_name }}
+  group: release-${{ github.event_name == 'workflow_dispatch' && format('v{0}', inputs.version) || github.ref_name }}
   cancel-in-progress: false
 
 jobs:
@@ -40,6 +40,7 @@ jobs:
         env:
           EVENT_NAME: ${{ github.event_name }}
           EVENT_REF: ${{ github.ref }}
+          EVENT_SHA: ${{ github.sha }}
           REQUESTED_VERSION: ${{ inputs.version }}
           REQUESTED_TAG: ${{ github.ref_name }}
         run: |
@@ -57,11 +58,12 @@ jobs:
               exit 1
             fi
             tag="v$version"
-            git checkout --detach origin/main
+            release_sha="$EVENT_SHA"
+            git checkout --detach "$release_sha"
             if git show-ref --verify --quiet "refs/tags/$tag"; then
               tag_commit="$(git rev-list -n 1 "$tag")"
-              if [[ "$tag_commit" != "$(git rev-parse HEAD)" ]]; then
-                echo "Existing release tag does not point to the current main commit: $tag" >&2
+              if [[ "$tag_commit" != "$release_sha" ]]; then
+                echo "Existing release tag does not point to the selected main commit: $tag" >&2
                 exit 1
               fi
               create_tag=false
@@ -83,7 +85,8 @@ jobs:
               echo "Release tag must point to a commit reachable from origin/main" >&2
               exit 1
             fi
-            git checkout --detach "refs/tags/$tag"
+            release_sha="$tag_commit"
+            git checkout --detach "$release_sha"
             version="${tag#v}"
             create_tag=false
           fi
@@ -93,7 +96,7 @@ jobs:
           echo "version=$version" >> "$GITHUB_OUTPUT"
           echo "archive=$archive" >> "$GITHUB_OUTPUT"
           echo "create_tag=$create_tag" >> "$GITHUB_OUTPUT"
-          echo "release_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          echo "release_sha=$release_sha" >> "$GITHUB_OUTPUT"
 
       - name: Set up pnpm
         uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
