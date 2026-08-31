@@ -7,6 +7,7 @@ import {
   Clock,
   ChevronDown,
   Download,
+  ExternalLink,
   Eye,
   EyeOff,
   History,
@@ -1685,6 +1686,31 @@ export function SettingsPanel({
             )}
           </div>
         </div>
+      </div>
+
+      <div
+        className="mb-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-muted-foreground"
+        data-testid="legal-links"
+      >
+        <a
+          href="https://vauld.de/impressum/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 transition hover:text-primary"
+        >
+          Impressum
+          <ExternalLink className="h-3 w-3" />
+        </a>
+        <span aria-hidden="true">·</span>
+        <a
+          href="https://vauld.de/privacy/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 transition hover:text-primary"
+        >
+          Privacy Policy
+          <ExternalLink className="h-3 w-3" />
+        </a>
       </div>
 
       {showMasterPasswordSetup && (

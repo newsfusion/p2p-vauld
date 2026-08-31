@@ -377,7 +377,7 @@ Contributions, issues, and feature requests are welcome! Here's how to get start
 
 ## Author
 
-**Peter Schael** — [GitHub](https://github.com/newsfusion)
+**Peter Schael** — [GitHub](https://github.com/newsfusion) · [Impressum](https://vauld.de/impressum/)
 
 ---
 

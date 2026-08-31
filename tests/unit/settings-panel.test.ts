@@ -1541,4 +1541,19 @@ describe("SettingsPanel", () => {
     expect(container.textContent).toContain("chrome://flags/#prompt-api-for-gemini-nano");
     expect(container.textContent).toContain("chrome://on-device-internals");
   });
+
+  it("renders legal links to Impressum and Privacy Policy", async () => {
+    renderSettings();
+    await flushAsyncWork();
+
+    const legalLinks = container.querySelector('[data-testid="legal-links"]');
+    expect(legalLinks).toBeTruthy();
+    const links = Array.from(legalLinks!.querySelectorAll("a"));
+    expect(links).toHaveLength(2);
+    expect(links[0]?.getAttribute("href")).toBe("https://vauld.de/impressum/");
+    expect(links[0]?.textContent).toContain("Impressum");
+    expect(links[1]?.getAttribute("href")).toBe("https://vauld.de/privacy/");
+    expect(links[1]?.textContent).toContain("Privacy Policy");
+  });
 });
+

@@ -3,6 +3,7 @@
   "name": "P2P Portfolio Tracker",
   "version": "1.1.1",
   "description": "Privacy-first aggregator for P2P lending portfolios. Auto-login, scrape, and visualise across 59 platforms.",
+  "homepage_url": "https://vauld.de",
   "permissions": [
     "storage",
     "tabs",
