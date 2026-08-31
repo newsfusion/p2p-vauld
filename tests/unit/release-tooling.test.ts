@@ -6,6 +6,7 @@ import {
   getReleaseVersionArgument,
   getReleaseArchiveArgs,
   parseReleaseVersion,
+  runLocalRelease,
 } from "../../scripts/prepare-webstore-release.mjs";
 
 interface ReleaseWorkflow {
@@ -78,6 +79,38 @@ describe("Web Store release tooling", () => {
   it("accepts pnpm's preserved argument separator", () => {
     expect(getReleaseVersionArgument(["--", "1.2.0"])).toBe("1.2.0");
     expect(getReleaseVersionArgument(["1.2.0"])).toBe("1.2.0");
+  });
+
+  it("prepares, commits, and pushes a release branch before printing GitHub steps", () => {
+    const operations: string[] = [];
+    const messages: string[] = [];
+
+    runLocalRelease("1.2.0", {
+      assertClean: () => operations.push("assert-clean"),
+      runCommand: (command, args) =>
+        operations.push(`${command} ${args.join(" ")}`),
+      prepareRelease: (version) => operations.push(`prepare ${version}`),
+      getRepositoryUrl: () => "https://github.com/newsfusion/p2p-vauld",
+      log: (message) => messages.push(message),
+    });
+
+    expect(operations).toEqual([
+      "assert-clean",
+      "git switch main",
+      "git pull --ff-only origin main",
+      "git switch -c release/v1.2.0",
+      "prepare 1.2.0",
+      "git add package.json manifest.json",
+      "git commit -m chore: prepare release 1.2.0",
+      "git push -u origin release/v1.2.0",
+    ]);
+    expect(messages.join("\n")).toContain("Next steps on GitHub:");
+    expect(messages.join("\n")).toContain(
+      "https://github.com/newsfusion/p2p-vauld/compare/main...release/v1.2.0?expand=1",
+    );
+    expect(messages.join("\n")).toContain(
+      'Click "Run workflow", select "main", enter "1.2.0"',
+    );
   });
 
   it("aligns package and manifest versions to the explicit release", () => {

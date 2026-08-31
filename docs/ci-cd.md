@@ -42,7 +42,7 @@ Choose the version using semantic versioning:
 - Minor for backward-compatible features.
 - Major for intentionally breaking behavior.
 
-Chrome release versions use exactly three numeric components with no prerelease suffix. Prepare the version and local archive:
+Chrome release versions use exactly three numeric components with no prerelease suffix. Start from a clean worktree and run:
 
 ```bash
 pnpm release:webstore -- 1.2.0

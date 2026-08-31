@@ -71,6 +71,39 @@ function run(command, args, options = {}) {
   }
 }
 
+function readCommand(command, args) {
+  const result = spawnSync(command, args, {
+    cwd: repoRoot,
+    encoding: "utf8",
+    shell: process.platform === "win32",
+  });
+
+  if (result.status !== 0) {
+    throw new Error(`${command} ${args.join(" ")} failed`);
+  }
+
+  return result.stdout.trim();
+}
+
+function assertCleanWorktree() {
+  if (readCommand("git", ["status", "--porcelain"])) {
+    throw new Error(
+      "Release preparation requires a clean Git worktree. Commit or stash your changes first.",
+    );
+  }
+}
+
+function getOriginRepositoryUrl() {
+  const remote = readCommand("git", ["remote", "get-url", "origin"]);
+  const match = /^(?:git@github\.com:|https:\/\/github\.com\/)([^/]+\/[^/]+?)(?:\.git)?$/.exec(
+    remote,
+  );
+  if (!match) {
+    throw new Error(`Expected a GitHub origin remote, got "${remote}"`);
+  }
+  return `https://github.com/${match[1]}`;
+}
+
 function getExpectedHosts() {
   const catalog = readJson(
     join(repoRoot, "src", "shared", "platforms", "platform-catalog.json"),
@@ -83,7 +116,7 @@ function getExpectedHosts() {
   return [...hosts].map((host) => `https://${host}/*`);
 }
 
-function prepareWebstoreRelease(version) {
+export function prepareWebstoreRelease(version) {
   const packageJson = readJson(packagePath);
   const manifest = readJson(manifestPath);
   const aligned = alignReleaseVersions(packageJson, manifest, version);
@@ -121,6 +154,43 @@ function prepareWebstoreRelease(version) {
   console.log(`Prepared Web Store release ${version}: ${archivePath}`);
 }
 
+function getGitHubInstructions(version, branch, repositoryUrl) {
+  return [
+    `Local release preparation completed for ${version}.`,
+    `The release branch was pushed: ${branch}`,
+    "",
+    "Next steps on GitHub:",
+    `1. Open the pull request: ${repositoryUrl}/compare/main...${branch}?expand=1`,
+    "2. Wait for the required checks, review the changes, and merge the pull request.",
+    `3. Open the release workflow: ${repositoryUrl}/actions/workflows/release.yml`,
+    `4. Click "Run workflow", select "main", enter "${version}", and start the workflow.`,
+    `5. Download p2p-extension-webstore-v${version}.zip from the created GitHub Release.`,
+  ].join("\n");
+}
+
+export function runLocalRelease(version, dependencies = {}) {
+  const releaseVersion = parseReleaseVersion(version);
+  const branch = `release/v${releaseVersion}`;
+  const {
+    assertClean = assertCleanWorktree,
+    runCommand = run,
+    prepareRelease = prepareWebstoreRelease,
+    getRepositoryUrl = getOriginRepositoryUrl,
+    log = console.log,
+  } = dependencies;
+
+  assertClean();
+  runCommand("git", ["switch", "main"]);
+  runCommand("git", ["pull", "--ff-only", "origin", "main"]);
+  runCommand("git", ["switch", "-c", branch]);
+  prepareRelease(releaseVersion);
+  runCommand("git", ["add", "package.json", "manifest.json"]);
+  runCommand("git", ["commit", "-m", `chore: prepare release ${releaseVersion}`]);
+  runCommand("git", ["push", "-u", "origin", branch]);
+
+  log(getGitHubInstructions(releaseVersion, branch, getRepositoryUrl()));
+}
+
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  prepareWebstoreRelease(getReleaseVersionArgument(process.argv.slice(2)));
+  runLocalRelease(getReleaseVersionArgument(process.argv.slice(2)));
 }
