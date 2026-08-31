@@ -6,13 +6,13 @@ on:
       - "v*.*.*"
   workflow_dispatch:
     inputs:
-      tag:
-        description: Existing vMAJOR.MINOR.PATCH tag to release
+      version:
+        description: MAJOR.MINOR.PATCH version to release from main
         required: true
         type: string
 
 concurrency:
-  group: release-${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}
+  group: release-${{ github.event_name == 'workflow_dispatch' && inputs.version || github.ref_name }}
   cancel-in-progress: false
 
 jobs:
@@ -26,6 +26,8 @@ jobs:
       tag: ${{ steps.release.outputs.tag }}
       version: ${{ steps.release.outputs.version }}
       archive: ${{ steps.release.outputs.archive }}
+      create_tag: ${{ steps.release.outputs.create_tag }}
+      release_sha: ${{ steps.release.outputs.release_sha }}
 
     steps:
       - name: Checkout repository history and tags
@@ -33,33 +35,65 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Resolve and verify release tag
+      - name: Resolve release source
         id: release
         env:
-          REQUESTED_TAG: ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}
+          EVENT_NAME: ${{ github.event_name }}
+          EVENT_REF: ${{ github.ref }}
+          REQUESTED_VERSION: ${{ inputs.version }}
+          REQUESTED_TAG: ${{ github.ref_name }}
         run: |
           set -euo pipefail
-          tag="$REQUESTED_TAG"
-          if [[ ! "$tag" =~ ^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]; then
-            echo "Release tag must match vMAJOR.MINOR.PATCH" >&2
-            exit 1
-          fi
-          if ! git show-ref --verify --quiet "refs/tags/$tag"; then
-            echo "Release tag does not exist: $tag" >&2
-            exit 1
-          fi
           git fetch origin main --no-tags
-          tag_commit="$(git rev-list -n 1 "$tag")"
-          if ! git merge-base --is-ancestor "$tag_commit" origin/main; then
-            echo "Release tag must point to a commit reachable from origin/main" >&2
-            exit 1
+
+          if [[ "$EVENT_NAME" == "workflow_dispatch" ]]; then
+            if [[ "$EVENT_REF" != "refs/heads/main" ]]; then
+              echo "Manual releases must be run from the main branch" >&2
+              exit 1
+            fi
+            version="$REQUESTED_VERSION"
+            if [[ ! "$version" =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]; then
+              echo "Release version must match MAJOR.MINOR.PATCH without a v prefix" >&2
+              exit 1
+            fi
+            tag="v$version"
+            git checkout --detach origin/main
+            if git show-ref --verify --quiet "refs/tags/$tag"; then
+              tag_commit="$(git rev-list -n 1 "$tag")"
+              if [[ "$tag_commit" != "$(git rev-parse HEAD)" ]]; then
+                echo "Existing release tag does not point to the current main commit: $tag" >&2
+                exit 1
+              fi
+              create_tag=false
+            else
+              create_tag=true
+            fi
+          else
+            tag="$REQUESTED_TAG"
+            if [[ ! "$tag" =~ ^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]; then
+              echo "Release tag must match vMAJOR.MINOR.PATCH" >&2
+              exit 1
+            fi
+            if ! git show-ref --verify --quiet "refs/tags/$tag"; then
+              echo "Release tag does not exist: $tag" >&2
+              exit 1
+            fi
+            tag_commit="$(git rev-list -n 1 "$tag")"
+            if ! git merge-base --is-ancestor "$tag_commit" origin/main; then
+              echo "Release tag must point to a commit reachable from origin/main" >&2
+              exit 1
+            fi
+            git checkout --detach "refs/tags/$tag"
+            version="${tag#v}"
+            create_tag=false
           fi
-          git checkout --detach "refs/tags/$tag"
-          version="${tag#v}"
+
           archive="p2p-extension-webstore-v${version}.zip"
           echo "tag=$tag" >> "$GITHUB_OUTPUT"
           echo "version=$version" >> "$GITHUB_OUTPUT"
           echo "archive=$archive" >> "$GITHUB_OUTPUT"
+          echo "create_tag=$create_tag" >> "$GITHUB_OUTPUT"
+          echo "release_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
       - name: Set up pnpm
         uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
@@ -149,6 +183,19 @@ jobs:
         with:
           name: webstore-${{ needs.package.outputs.version }}
           path: releases
+
+      - name: Create release tag for manual runs
+        if: ${{ needs.package.outputs.create_tag == 'true' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ needs.package.outputs.tag }}
+          RELEASE_SHA: ${{ needs.package.outputs.release_sha }}
+        run: |
+          set -euo pipefail
+          gh api --method POST "repos/$GH_REPO/git/refs" \
+            -f ref="refs/tags/$RELEASE_TAG" \
+            -f sha="$RELEASE_SHA"
 
       - name: Create immutable GitHub Release
         env:

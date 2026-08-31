@@ -14,7 +14,7 @@ GitHub Actions verifies pull requests and `main`, deploys the public project sit
 
 The public repository starts from a history-less publication snapshot, so CI scans the complete history of the public repository. Any committed email address, IBAN, credential, or captured account value fails the build. Never add a history baseline to silence a finding: inspect the commit, remove the sensitive data, and rotate any exposed credential first.
 
-`.github/workflows/release.yml` runs for an existing `vMAJOR.MINOR.PATCH` tag. A manual run accepts the same existing tag as input; it never creates or rewrites tags. The workflow verifies that the tag is reachable from `main`, checks that both committed version files match it, packages `dist/`, uploads the immutable ZIP as an Actions artifact, and creates the matching GitHub Release. Download that ZIP and upload it manually in the Chrome Web Store Developer Dashboard.
+`.github/workflows/release.yml` can be run manually from `main` with a `MAJOR.MINOR.PATCH` version. After validation it creates the missing matching tag, packages `dist/`, uploads the immutable ZIP as an Actions artifact, and creates the GitHub Release. Existing `vMAJOR.MINOR.PATCH` tag pushes remain supported; those tags must be reachable from `main`. Both paths require the committed version files to match. Download the release ZIP and upload it manually in the Chrome Web Store Developer Dashboard.
 
 ## Public GitHub setup
 
@@ -48,7 +48,9 @@ Chrome release versions use exactly three numeric components with no prerelease 
 pnpm release:webstore -- 1.2.0
 ```
 
-Review and commit the resulting `package.json` and `manifest.json` changes. The generated `releases/` archive is ignored and must not be committed. After CI passes on `main`, create and push the matching tag:
+Review and commit the resulting `package.json` and `manifest.json` changes. The generated `releases/` archive is ignored and must not be committed. Merge the version commit and wait for CI to pass on `main`. Then open **Actions > Release Chrome extension > Run workflow**, select `main`, and enter the version without a `v` prefix, for example `1.2.0`. The workflow creates the missing `v1.2.0` tag and the GitHub Release.
+
+Alternatively, an existing tag can still trigger the workflow:
 
 ```bash
 git tag -a v1.2.0 -m "Release 1.2.0"
@@ -61,6 +63,7 @@ If Google rejects a submission, fix the source and release a higher version. Chr
 
 ## Troubleshooting
 
-- **Tag rejected:** confirm it is an exact `vMAJOR.MINOR.PATCH` tag reachable from `origin/main` and both version files match it.
+- **Manual release rejected:** run it from `main`, enter an exact `MAJOR.MINOR.PATCH` version without `v`, and confirm both version files match it.
+- **Tag rejected:** for a tag-triggered release, confirm it is an exact `vMAJOR.MINOR.PATCH` tag reachable from `origin/main` and both version files match it.
 - **Upload rejected:** Chrome requires a version higher than every previously uploaded version. Check the Developer Dashboard for an existing draft or policy warning.
 - **Visibility error:** publish the changed visibility manually once in the Developer Dashboard.
