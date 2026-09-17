@@ -10,11 +10,11 @@ GitHub Actions verifies pull requests and `main`, deploys the public project sit
 
 `.github/workflows/pages.yml` deploys `docs/site/` after the GitHub `CI` workflow succeeds for a push from this repository to `main`, and can also be run manually from `main`. In **Settings > Pages**, choose **GitHub Actions** as the publishing source and configure the verified custom domain `vauld.de`. The workflow uploads the static site as a Pages artifact and deploys it through the `github-pages` environment. Restrict that environment to `main`. Use `https://vauld.de/privacy/` in the Chrome Web Store Developer Dashboard Privacy tab and verify it in a signed-out browser session before submission.
 
-`.gitlab-ci.yml` remains available for GitLab-side verification and security scans, but it no longer deploys Pages.
+`.gitlab-ci.yml` remains available for GitLab-side verification and security scans, but it no longer deploys Pages. Its security scans run alongside verification, and failed browser checks retain their reports.
 
 The public repository starts from a history-less publication snapshot, so CI scans the complete history of the public repository. Any committed email address, IBAN, credential, or captured account value fails the build. Never add a history baseline to silence a finding: inspect the commit, remove the sensitive data, and rotate any exposed credential first.
 
-`.github/workflows/release.yml` can be run manually from `main` with a `MAJOR.MINOR.PATCH` version. After validation it creates the missing matching tag, packages `dist/`, uploads the immutable ZIP as an Actions artifact, and creates the GitHub Release. Existing `vMAJOR.MINOR.PATCH` tag pushes remain supported; those tags must be reachable from `main`. Both paths require the committed version files to match. Download the release ZIP and upload it manually in the Chrome Web Store Developer Dashboard.
+`.github/workflows/release.yml` can be run manually from `main` with a `MAJOR.MINOR.PATCH` version. It requires successful push runs of CI, CodeQL, and OSV for the release commit. After validation it creates the missing matching tag, packages `dist/`, uploads the immutable ZIP as an Actions artifact, and creates the GitHub Release. Existing `vMAJOR.MINOR.PATCH` tag pushes remain supported; those tags must be reachable from `main`. Both paths require the committed version files to match. Download the release ZIP and upload it manually in the Chrome Web Store Developer Dashboard.
 
 ## Public GitHub setup
 
@@ -48,7 +48,7 @@ Chrome release versions use exactly three numeric components with no prerelease 
 pnpm release:webstore -- 1.2.0
 ```
 
-Review and commit the resulting `package.json` and `manifest.json` changes. The generated `releases/` archive is ignored and must not be committed. Merge the version commit and wait for CI to pass on `main`. Then open **Actions > Release Chrome extension > Run workflow**, select `main`, and enter the version without a `v` prefix, for example `1.2.0`. The workflow creates the missing `v1.2.0` tag and the GitHub Release.
+The command creates and pushes a `release/v<version>` branch with the version changes and prints a pull request link. The generated `releases/` archive is ignored and must not be committed. Review and merge that pull request. Wait for CI, CodeQL, and OSV to pass on the merged `main` commit. Then open **Actions > Release Chrome extension > Run workflow**, select `main`, and enter the version without a `v` prefix, for example `1.2.0`. The workflow creates the missing `v1.2.0` tag and the GitHub Release.
 
 Alternatively, an existing tag can still trigger the workflow:
 
