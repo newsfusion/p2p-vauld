@@ -68,6 +68,17 @@ describe("Web Store release tooling", () => {
     );
   });
 
+  it("requires successful main commit checks before packaging a release", () => {
+    const workflow = readReleaseWorkflow();
+    const gate = workflow.jobs.package.steps.find(
+      (step) => step.name === "Require successful source checks",
+    );
+    expect(gate?.run).toContain("actions/workflows/$workflow/runs");
+    expect(gate?.run).toContain('head_sha="$RELEASE_SHA"');
+    expect(gate?.run).toContain("event=push");
+    expect(gate?.run).toContain("ci.yml codeql.yml osv-scanner.yml");
+  });
+
   it("requires an explicit three-part release version", () => {
     expect(parseReleaseVersion("1.2.0")).toBe("1.2.0");
     expect(() => parseReleaseVersion("v1.2.0")).toThrow(/MAJOR\.MINOR\.PATCH/);
@@ -135,5 +146,12 @@ describe("Web Store release tooling", () => {
       ".DS_Store",
       "*/.DS_Store",
     ]);
+  });
+  it("documents the automated release branch flow of the release script", () => {
+    const releaseDocumentation = readFileSync("docs/ci-cd.md", "utf8");
+
+    expect(releaseDocumentation).toContain("pnpm release:webstore");
+    expect(releaseDocumentation).toContain("release/v<version>");
+    expect(releaseDocumentation).not.toContain("Review and commit the resulting");
   });
 });

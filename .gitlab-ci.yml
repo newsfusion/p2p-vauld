@@ -12,7 +12,6 @@ default:
   image: mcr.microsoft.com/playwright:v1.60.0-noble@sha256:9bd26ad900bb5e0f4dee75839e957a89ae89c2b7ab1e76050e559790e946b948
   before_script:
     - corepack enable
-    - corepack prepare pnpm@11.1.2 --activate
     - pnpm config set store-dir .pnpm-store
     - pnpm install --frozen-lockfile
   cache:
@@ -54,11 +53,19 @@ verify:
     - pnpm validate:manifest manifest.json --root . --catalog src/shared/platforms/platform-catalog.json
     - pnpm test
     - pnpm build
+    - pnpm test:e2e --workers=1
     - pnpm exec playwright test --project=smoke tests/e2e/smoke/extension-load.test.ts --workers=1
     - pnpm validate:manifest dist/manifest.json --root dist --catalog src/shared/platforms/platform-catalog.json --built
+  artifacts:
+    when: on_failure
+    paths:
+      - playwright-report/
+      - test-results/
+    expire_in: 14 days
 
 osv_dependency_scan:
   stage: security
+  needs: []
   image:
     name: ghcr.io/google/osv-scanner:v2.5.0@sha256:5b8b38e45bb2c5c4976f0f1f07860551ea6e1f235f642cf215f74d266fec2c1b
     entrypoint: [""]
@@ -69,6 +76,7 @@ osv_dependency_scan:
 
 semgrep_sast:
   stage: security
+  needs: []
   image: semgrep/semgrep:1.171.0@sha256:bdf7013b2c3634a487671158da77c554f531742326b543a9464d2adf6c433ac8
   before_script: []
   cache: []
