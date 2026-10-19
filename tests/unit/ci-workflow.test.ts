@@ -6,16 +6,37 @@ describe("CI workflow", () => {
   const workflow = readFileSync(".github/workflows/ci.yml", "utf8");
 
   it("uses the package manager version declared by the project", () => {
-    const configuredVersion = JSON.parse(readFileSync("package.json", "utf8"))
+    const packageManager = JSON.parse(readFileSync("package.json", "utf8"))
       .packageManager as string;
-    expect(configuredVersion).toMatch(/^pnpm@\d+\.\d+\.\d+/);
-    expect(workflow).not.toMatch(/\bversion: 11\.1\.2\b/);
-    expect(readFileSync(".github/workflows/release.yml", "utf8")).not.toMatch(
-      /\bversion: 11\.1\.2\b/,
+    const declaredVersion = /^pnpm@(\d+\.\d+\.\d+)/.exec(packageManager)?.[1];
+    expect(declaredVersion).toBeDefined();
+
+    for (const path of [".github/workflows/ci.yml", ".github/workflows/release.yml"]) {
+      const jobs = Object.values(
+        parse(readFileSync(path, "utf8")).jobs as Record<
+          string,
+          { steps?: Array<{ uses?: string; with?: { version?: unknown } }> }
+        >,
+      );
+      const pnpmSetups = jobs
+        .flatMap((job) => job.steps ?? [])
+        .filter((step) => step.uses?.startsWith("pnpm/action-setup"));
+
+      expect(pnpmSetups.length, path).toBeGreaterThan(0);
+      for (const step of pnpmSetups) {
+        // pnpm/action-setup fails when `version` and `packageManager` disagree.
+        if (step.with?.version !== undefined) {
+          expect(String(step.with.version), path).toBe(declaredVersion);
+        }
+      }
+    }
+
+    const gitlabPins = readFileSync(".gitlab-ci.yml", "utf8").match(
+      /corepack prepare pnpm@[^\s]+/g,
     );
-    expect(readFileSync(".gitlab-ci.yml", "utf8")).not.toContain(
-      "corepack prepare pnpm@11.1.2",
-    );
+    for (const pin of gitlabPins ?? []) {
+      expect(pin).toBe(`corepack prepare pnpm@${declaredVersion}`);
+    }
   });
 
   it("runs GitLab security scans alongside verification and keeps browser failure reports", () => {

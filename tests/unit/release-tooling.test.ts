@@ -147,4 +147,11 @@ describe("Web Store release tooling", () => {
       "*/.DS_Store",
     ]);
   });
+  it("documents the automated release branch flow of the release script", () => {
+    const releaseDocumentation = readFileSync("docs/ci-cd.md", "utf8");
+
+    expect(releaseDocumentation).toContain("pnpm release:webstore");
+    expect(releaseDocumentation).toContain("release/v<version>");
+    expect(releaseDocumentation).not.toContain("Review and commit the resulting");
+  });
 });
