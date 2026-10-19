@@ -1,0 +1,14 @@
+# OSV-Scanner config, picked up automatically for pnpm-lock.yaml in this directory.
+# Every ignore needs a reason and an ignoreUntil date so it is re-reviewed, not forgotten.
+# Prefer bumping the version in pnpm-workspace.yaml `overrides` whenever a fix exists.
+
+[[IgnoredVulns]]
+id = "GHSA-86w9-cpqp-85rv"
+ignoreUntil = 2027-01-19
+reason = """
+node-forge 1.4.0 (latest release, no fixed version published). Dev-only: pulled in via
+vite-plugin-web-extension -> web-ext-run -> @devicefarmer/adbkit, used for Android device
+debugging in the dev runner. It is never bundled into the extension and never verifies
+untrusted RSA signatures in our build. Remove this entry once node-forge ships a fix and
+bump the override in pnpm-workspace.yaml.
+"""
